@@ -1,0 +1,20 @@
+- From charline:
+
+	1. I would be really grateful if you could take a look on the codes for simulating the datasets, as well as the datasets that I have incorporated into the project. I remember that there were some changes in the ICC, with several versions, and I am not 100% sure the ones I have included (both codes and datasets) are the definitive ones. I need from her the SCRIPTS (not the functions) for the generation of the datasets.
+	
+	2. Could you please provide me (or directly incorporate the codes for the two-step approaches? I think you run these models).
+	
+	3. Should we provide also the codes for the results interpretation?
+	
+	
+- From myself:
+
+Create Rproject.
+
+Identify all final results files, allocate them into their respective directories and be 100 % that these are the last ones. I can load them into R.
+
+Check name of files and paths.
+
+Complete readme.md for the whole project explaining the three parts (dataset generation, data analysis and results interpretation.
+
+Complete readme.md for the datasets explaining the structure, number of features, individuals, etc.

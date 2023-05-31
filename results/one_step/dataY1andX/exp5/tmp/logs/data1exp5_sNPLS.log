@@ -1,0 +1,1452 @@
+         used (Mb) gc trigger (Mb) max used (Mb)
+Ncells 270502 14.5     654365   35   446674 23.9
+Vcells 452653  3.5    8388608   64  1771599 13.6
+[1] "Step 1 - Required R libraries successfully loaded"
+[1] "/PROJECTES/ATHLETE/analyses/22_longi_meths_benchmark_AA/Simulation/COMPLETED_EXPERIMENT/MAIN_ANALYSIS"
+here() starts at /PROJECTES/ATHLETE/analyses/22_longi_meths_benchmark_AA/Simulation/COMPLETED_EXPERIMENT/MAIN_ANALYSIS
+[1] "/PROJECTES/ATHLETE/analyses/22_longi_meths_benchmark_AA/Simulation/COMPLETED_EXPERIMENT/MAIN_ANALYSIS"
+------------------------------------------------------------------------------
+You have loaded plyr after dplyr - this is likely to cause problems.
+If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
+library(plyr); library(dplyr)
+------------------------------------------------------------------------------
+
+Attaching package: ‘plyr’
+
+The following objects are masked from ‘package:dplyr’:
+
+    arrange, count, desc, failwith, id, mutate, rename, summarise,
+    summarize
+
+The following object is masked from ‘package:purrr’:
+
+    compact
+
+[1] "Step 2 - Loaded simulated predictor and outcome datasets"
+[1] 72
+socket cluster with 24 nodes on host ‘localhost’
+[1] TRUE
+[1] 24
+[1] "Step 3 - Set up for parallelization completed"
+[1] 1
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2141251 
+ 
+Coefficients: 
+[1] 2
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 3029257 
+ 
+Coefficients: 
+[1] 3
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1913352 
+ 
+Coefficients: 
+[1] 4
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1906741 
+ 
+Coefficients: 
+[1] 5
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2595639 
+ 
+Coefficients: 
+[1] 6
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2011272 
+ 
+Coefficients: 
+[1] 7
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1813718 
+ 
+Coefficients: 
+[1] 8
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2686804 
+ 
+Coefficients: 
+[1] 9
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1754805 
+ 
+Coefficients: 
+[1] 10
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1227753 
+ 
+Coefficients: 
+[1] 11
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1260957 
+ 
+Coefficients: 
+[1] 12
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1895044 
+ 
+Coefficients: 
+[1] 13
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1938172 
+ 
+Coefficients: 
+[1] 14
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1301293 
+ 
+Coefficients: 
+[1] 15
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2117449 
+ 
+Coefficients: 
+[1] 16
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2217551 
+ 
+Coefficients: 
+[1] 17
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 3174458 
+ 
+Coefficients: 
+[1] 18
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2509798 
+ 
+Coefficients: 
+[1] 19
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1982777 
+ 
+Coefficients: 
+[1] 20
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2437031 
+ 
+Coefficients: 
+[1] 21
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2438868 
+ 
+Coefficients: 
+[1] 22
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2107637 
+ 
+Coefficients: 
+[1] 23
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1419512 
+ 
+Coefficients: 
+[1] 24
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1438372 
+ 
+Coefficients: 
+[1] 25
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1624158 
+ 
+Coefficients: 
+[1] 26
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1783834 
+ 
+Coefficients: 
+[1] 27
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2708549 
+ 
+Coefficients: 
+[1] 28
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1941926 
+ 
+Coefficients: 
+[1] 29
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2207319 
+ 
+Coefficients: 
+[1] 30
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1724072 
+ 
+Coefficients: 
+[1] 31
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2758273 
+ 
+Coefficients: 
+[1] 32
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1696147 
+ 
+Coefficients: 
+[1] 33
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2117980 
+ 
+Coefficients: 
+[1] 34
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1209844 
+ 
+Coefficients: 
+[1] 35
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2679865 
+ 
+Coefficients: 
+[1] 36
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2777765 
+ 
+Coefficients: 
+[1] 37
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2101137 
+ 
+Coefficients: 
+[1] 38
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1798761 
+ 
+Coefficients: 
+[1] 39
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2238551 
+ 
+Coefficients: 
+[1] 40
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2001756 
+ 
+Coefficients: 
+[1] 41
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1960435 
+ 
+Coefficients: 
+[1] 42
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 3294568 
+ 
+Coefficients: 
+[1] 43
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1420736 
+ 
+Coefficients: 
+[1] 44
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2020171 
+ 
+Coefficients: 
+[1] 45
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2470299 
+ 
+Coefficients: 
+[1] 46
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1495151 
+ 
+Coefficients: 
+[1] 47
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1538884 
+ 
+Coefficients: 
+[1] 48
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1750285 
+ 
+Coefficients: 
+[1] 49
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1978494 
+ 
+Coefficients: 
+[1] 50
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2996610 
+ 
+Coefficients: 
+[1] 51
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2400535 
+ 
+Coefficients: 
+[1] 52
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1817727 
+ 
+Coefficients: 
+[1] 53
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2446979 
+ 
+Coefficients: 
+[1] 54
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2061942 
+ 
+Coefficients: 
+[1] 55
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2100308 
+ 
+Coefficients: 
+[1] 56
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1471443 
+ 
+Coefficients: 
+[1] 57
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1977167 
+ 
+Coefficients: 
+[1] 58
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1891114 
+ 
+Coefficients: 
+[1] 59
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1778809 
+ 
+Coefficients: 
+[1] 60
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2389909 
+ 
+Coefficients: 
+[1] 61
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2233345 
+ 
+Coefficients: 
+[1] 62
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 4238040 
+ 
+Coefficients: 
+[1] 63
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2607325 
+ 
+Coefficients: 
+[1] 64
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1742462 
+ 
+Coefficients: 
+[1] 65
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1793544 
+ 
+Coefficients: 
+[1] 66
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1731413 
+ 
+Coefficients: 
+[1] 67
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1595398 
+ 
+Coefficients: 
+[1] 68
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2281495 
+ 
+Coefficients: 
+[1] 69
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1571371 
+ 
+Coefficients: 
+[1] 70
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1785495 
+ 
+Coefficients: 
+[1] 71
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1921599 
+ 
+Coefficients: 
+[1] 72
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2091812 
+ 
+Coefficients: 
+[1] 73
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1730640 
+ 
+Coefficients: 
+[1] 74
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1409209 
+ 
+Coefficients: 
+[1] 75
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1246967 
+ 
+Coefficients: 
+[1] 76
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1732000 
+ 
+Coefficients: 
+[1] 77
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2290637 
+ 
+Coefficients: 
+[1] 78
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2811446 
+ 
+Coefficients: 
+[1] 79
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2385612 
+ 
+Coefficients: 
+[1] 80
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2878863 
+ 
+Coefficients: 
+[1] 81
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1735310 
+ 
+Coefficients: 
+[1] 82
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1695650 
+ 
+Coefficients: 
+[1] 83
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1674257 
+ 
+Coefficients: 
+[1] 84
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1737413 
+ 
+Coefficients: 
+[1] 85
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1322249 
+ 
+Coefficients: 
+[1] 86
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1653082 
+ 
+Coefficients: 
+[1] 87
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2251031 
+ 
+Coefficients: 
+[1] 88
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2539599 
+ 
+Coefficients: 
+[1] 89
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2250114 
+ 
+Coefficients: 
+[1] 90
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2098849 
+ 
+Coefficients: 
+[1] 91
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 3043970 
+ 
+Coefficients: 
+[1] 92
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1421774 
+ 
+Coefficients: 
+[1] 93
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2013487 
+ 
+Coefficients: 
+[1] 94
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+sNPLS model with 1 components and squared error of 2073086 
+ 
+Coefficients: 
+[1] 95
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1820740 
+ 
+Coefficients: 
+[1] 96
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2308537 
+ 
+Coefficients: 
+[1] 97
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2641675 
+ 
+Coefficients: 
+[1] 98
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1538656 
+ 
+Coefficients: 
+[1] 99
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1896765 
+ 
+Coefficients: 
+[1] 100
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1399559 
+ 
+Coefficients: 
+[1] 1
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2141251 
+ 
+Coefficients: 
+[1] 2
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 3027404 
+ 
+Coefficients: 
+[1] 3
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1915492 
+ 
+Coefficients: 
+[1] 4
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1828061 
+ 
+Coefficients: 
+[1] 5
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2595639 
+ 
+Coefficients: 
+[1] 6
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2011272 
+ 
+Coefficients: 
+[1] 7
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1813718 
+ 
+Coefficients: 
+[1] 8
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2659893 
+ 
+Coefficients: 
+[1] 9
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1754805 
+ 
+Coefficients: 
+[1] 10
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1227753 
+ 
+Coefficients: 
+[1] 11
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1285664 
+ 
+Coefficients: 
+[1] 12
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1884667 
+ 
+Coefficients: 
+[1] 13
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 1923721 
+ 
+Coefficients: 
+[1] 14
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 1301293 
+ 
+Coefficients: 
+[1] 15
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+sNPLS model with 2 components and squared error of 2107182 
+ 
+Coefficients: 
+[1] 16
+Your parallel configuration is cluster
+Using discrete thresholding
+Using discrete L1-thresholding
+Component number  1 
+Number of iterations:  1 
+Component number  2 
+Number of iterations:  1 
+Component number  3 
+Number of iterations:  1 
+sNPLS model with 3 components and squared error of 2222369 
+ 
+Coefficients: 
+[1] 17
+Your parallel configuration is cluster
+Using discrete thresholding
+slurmstepd: error: *** JOB 15842 ON isgws07 CANCELLED AT 2022-12-23T23:26:02 DUE TO TIME LIMIT ***

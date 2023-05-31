@@ -1,0 +1,118 @@
+         used (Mb) gc trigger (Mb) max used (Mb)
+Ncells 270502 14.5     654365   35   446674 23.9
+Vcells 452653  3.5    8388608   64  1771599 13.6
+[1] "Step 1 - Required R libraries successfully loaded"
+[1] "/PROJECTES/SHARED/AugustoAnguita/ATHLETE_sim_long/DLNM/ANALYSIS/simulation_mars_2022"
+here() starts at /PROJECTES/SHARED/AugustoAnguita/ATHLETE_sim_long/DLNM/ANALYSIS/simulation_mars_2022
+[1] "/PROJECTES/SHARED/AugustoAnguita/ATHLETE_sim_long/DLNM/ANALYSIS/simulation_mars_2022"
+[1] "Step 2 - Loaded simulated predictor and outcome datasets"
+[1] 72
+socket cluster with 30 nodes on host ‘localhost’
+[1] TRUE
+[1] 30
+[1] "Step 3 - Set up for parallelization completed"
+[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5
+[1] 6
+[1] 7
+[1] 8
+[1] 9
+[1] 10
+[1] 11
+[1] 12
+[1] 13
+[1] 14
+[1] 15
+[1] 16
+[1] 17
+[1] 18
+[1] 19
+[1] 20
+[1] 21
+[1] 22
+[1] 23
+[1] 24
+[1] 25
+[1] 26
+[1] 27
+[1] 28
+[1] 29
+[1] 30
+[1] 31
+[1] 32
+[1] 33
+[1] 34
+[1] 35
+[1] 36
+[1] 37
+[1] 38
+[1] 39
+[1] 40
+[1] 41
+[1] 42
+[1] 43
+[1] 44
+[1] 45
+[1] 46
+[1] 47
+[1] 48
+[1] 49
+[1] 50
+[1] 51
+[1] 52
+[1] 53
+[1] 54
+[1] 55
+[1] 56
+[1] 57
+[1] 58
+[1] 59
+[1] 60
+[1] 61
+[1] 62
+[1] 63
+[1] 64
+[1] 65
+[1] 66
+[1] 67
+[1] 68
+[1] 69
+[1] 70
+[1] 71
+[1] 72
+[1] 73
+[1] 74
+[1] 75
+[1] 76
+[1] 77
+[1] 78
+[1] 79
+[1] 80
+[1] 81
+[1] 82
+[1] 83
+[1] 84
+[1] 85
+[1] 86
+[1] 87
+[1] 88
+[1] 89
+[1] 90
+[1] 91
+[1] 92
+[1] 93
+[1] 94
+[1] 95
+[1] 96
+[1] 97
+[1] 98
+[1] 99
+[1] 100
+[1] "Step 4 - Completed model penalized DLNM without variable selection (output: RES1.DLNMpen.i.exp3.RData)"
+[1] "Step 5 - Completed model penalized DLNM with variable selection (output: RES1.DLNMselect.i.exp3.RData)"
+[1] "Step 6 - Completed model penalized DLNM with variable selection with additional columns (output: RES1.DLNMselect.i.exp3.v2.RData)"
+[1] "Step 7 - Completed model penalized DLNM with variable selection Backward prunning (output: RES1.DLNMselect.i.exp3.backward...)"
+[1] "Step 8 - Completed model penalized DLNM with variable selection Backward prunning with additional columns (output: RES1.DLNMselect.i.exp3.backward.v2...)"

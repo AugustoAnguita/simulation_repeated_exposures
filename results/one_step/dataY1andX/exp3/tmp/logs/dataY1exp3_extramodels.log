@@ -1,0 +1,17 @@
+         used (Mb) gc trigger (Mb) max used (Mb)
+Ncells 270502 14.5     654365   35   446674 23.9
+Vcells 452653  3.5    8388608   64  1771599 13.6
+[1] "Step 1 - Required R libraries successfully loaded"
+[1] "/PROJECTES/ATHLETE/ATHLETE_sim_long/DLNM/ANALYSIS/simulation_mars_2022"
+here() starts at /PROJECTES/ATHLETE/ATHLETE_sim_long/DLNM/ANALYSIS/simulation_mars_2022
+[1] "/PROJECTES/ATHLETE/ATHLETE_sim_long/DLNM/ANALYSIS/simulation_mars_2022"
+[1] "Step 2 - Loaded simulated predictor and outcome datasets"
+[1] 72
+socket cluster with 24 nodes on host ‘localhost’
+[1] TRUE
+[1] 24
+[1] "Step 3 - Set up for parallelization completed"
+[1] "Step 4 - Completed model penalized DLNM with variable selection Backward prunning (output: RES1.DLNMselect.i.exp3.backward.AVGEXWAS...)"
+[1] "Step 5 - Completed model penalized DLNM with variable selection Backward prunning with additional columns (output: RES1.DLNMselect.i.exp3.backward..AVGEXWAS.v2...)"
+[1] "Step 6 - Completed model penalized DLNM with variable selection Forward prunning (output: RES1.DLNMselect.i.exp3.Forward...)"
+[1] "Step 7 - Completed model penalized DLNM with variable selection Forward prunning with additional columns (output: RES1.DLNMselect.i.exp3.Forward.v2...)"
