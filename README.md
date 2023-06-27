@@ -2,7 +2,7 @@
 # Statistical approaches to study exposome-health associations in the context of repeated exposure data: a simulation study
 
 by
-Warembourg Charline,
+Charline Warembourg,
 Anguita-Ruiz Augusto,
 Valérie Siroux,
 Rémy Slama,
@@ -26,14 +26,7 @@ Basagaña Xavier
 
 ## Abstract
 
-> The exposome concept has emerged quite recently and aims at considering all the environmental stressors simultaneously. The high-dimension of the data and the potential correlations that may exist 
-> between exposures lead to various statistical challenges. Some methodological papers have reported recommendations on how to analyze exposome data. However, few studies tried to characterize the
-> longitudinal relationship between repeated measures of the exposome and a health outcome. Here, we conduct a simulation study to compare the performance of different statistical approaches to 
-> assess exposome-health associations in the context of multiple and repeated exposure variables. Two scenarios were tested: 1) assuming that all time points are associated with Y, and 2) assuming
-> that only a single time point is associated with Y. An application study using real data collected within the INMA mother-child cohort (Spain) is also presented. Some methods such as sPLS and DSA 
-> showed better performance than other methods in both scenarios. However, none of the tested methods provided good enough performances when the number of true predictors increased. The results of
-> the simulation study call for the development of new statistical methods or approaches that are able to address both the issue of multiple (and correlated) variables and of repeated exposome data.
-
+> The exposome concept aims at considering all environmental stressors simultaneously. The dimension of the data and the correlation that may exist between exposures lead to various statistical challenges. Some methodological studies have provided insight regarding the efficiency of specific modeling approaches in the context of exposome data assessed once in each subject. However, few studies considered the situation in which environmental exposures are assessed repeatedly. Here, we conduct a simulation study to compare the performance of statistical approaches to assess exposome-health associations in the context of multiple and repeated exposure variables. Different scenarios were tested assuming different types and numbers of exposure-outcome causal relationships. An application study using real data collected within the INMA mother-child cohort (Spain) is also presented. In the tested scenarios, methods such as sparse partial least squares (sPLS) and Deletion-Substitution-Addition algorithm (DSA) showed better performance than other methods. Performance of all methods decreased when the number of true predictors increased. Our results highlight that having repeated exposome data poses extra challenges to detecting true associations, and that care must be taken when choosing the statistical methods to use. Besides, results should be interpreted with caution, especially in contexts with limited sample size, given the elevated chance of reporting false positive or negative associations. 
 
 ## Software implementation
 
