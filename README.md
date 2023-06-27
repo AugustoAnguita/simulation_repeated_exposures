@@ -6,7 +6,6 @@ Charline Warembourg,
 Augusto Anguita-Ruiz,
 Valérie Siroux,
 Rémy Slama,
-Vrijheid Martine,
 Richiardi Lorenzo,
 Basagaña Xavier
 
