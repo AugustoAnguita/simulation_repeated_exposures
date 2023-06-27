@@ -3,7 +3,7 @@
 
 by
 Charline Warembourg,
-Anguita-Ruiz Augusto,
+Augusto Anguita-Ruiz,
 Valérie Siroux,
 Rémy Slama,
 Vrijheid Martine,
