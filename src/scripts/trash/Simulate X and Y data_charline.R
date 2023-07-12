@@ -3,25 +3,82 @@ library(Matrix)
 library(dplyr)
 library(matrixcalc)
 
+#### simulated X and Y 100 times
 
-###### Script to simulate the data under the different scenarios
-
-# load the functions
 source(file="Functions method simulation_charline.R")
 
 # define number of simulated dataset (X and Y)
 nsim<-100
 
+##### The following must be run only once 
+# load(file="Baseline/total_correlation_cen.RData")
+# 
+# names(totcorr_cen)
+# 
+# # keep only postnatal period (more exposures)
+# 
+# corr = totcorr_cen[totcorr_cen$Period1=="Postnatal" & totcorr_cen$Period2=="Postnatal",]
+# 
+# corr = corr[order(corr$Family1,corr$Exposome1,corr$Family2,corr$Exposome2),]
+# 
+# # put in correlation matrix format
+# 
+# coraux = matrix(corr$Corr,nrow=122,ncol=121,byrow=T)
+# 
+# cormat = matrix(NA,ncol=122,nrow=122)
+# cormat[1,] = c(1,coraux[1,])
+# for (i in 2:121) {
+#   cormat[i,] = c( coraux[i,1:(i-1)], 1, coraux[i,i:121])
+# }
+# cormat[122,] = c(coraux[122,],1)
+# 
+# names.exp = corr$Exposome1[!duplicated(corr$Exposome1)]
+# 
+# colnames(cormat) = names.exp
+# rownames(cormat) = names.exp
+# 
+# names.family = corr$Family1[!duplicated(corr$Exposome1)]
+# 
+# table(names.family)
+# length(table(names.family))
+# # 18 families
+# 
+# # Average within-family correlation
+# 
+# avg.corr.family = vector()
+# for (i in 1:length(unique(names.family))) {
+#   avg.corr.family[i] = mean(corr$Abs[corr$Family1==unique(names.family)[i] & corr$Family2==unique(names.family)[i]],na.rm=T)
+# }
+# 
+# within.corr = data.frame(Family1=unique(names.family),avg.corr=avg.corr.family)
+# within.corr
+# 
+# # sort by absolute within-family mean correlation
+# # It may be useful if we want to simulate exposures with high or low within-subject corr
+# 
+# aux.df = merge(data.frame(Family1=unique(names.family),avg.corr=avg.corr.family),
+#                data.frame(order1=1:122,names.exp=names.exp,Family1=names.family), by="Family1")
+# 
+# cormat.ordered = cormat[order(aux.df$avg.corr,aux.df$order1),order(aux.df$avg.corr,aux.df$order1)]
+# 
+# # e.g. low correlation:
+# cormat.ordered[1:5,1:5]
+# 
+# # e.g. high correlation:
+# cormat.ordered[117:121,117:121]
+# 
+# Sigma = cormat.ordered
+# 
+# save(Sigma,file="baseline/Sigma.Rdata")
 
-###### Simulate X data
+# load the correlation matrix used to simulate X
+load(file="baseline/Sigma.Rdata") # Helix correlation matrix
 
-# load the correlation matrix to be used to simulate X
-load(file="baseline/Sigma.Rdata") # Real correlation matrix observed in Helix project using postnatal exposure data
 
-# Simulate X data based on the correlation matrix - 100 times 
+# Simulate X data based on the correlation matrix - 100 times ///  DO NOT RUN AGAIN ///
 resu.sim.dataX.i <- vector("list", nsim)
 for(i in 1:nsim) {
-   resu.sim.dataX.i[[i]] = simX(cormat.ordered=Sigma, N = 1200)
+   resu.sim.dataX.i[[i]] = simX(cormat.ordered=cormat.ordered,N = 1200)
 }
 
 # reordering columns
@@ -41,35 +98,99 @@ for(i in 1:nsim) {
   resu.sim.dataX.i[[i]]$X = resu.sim.dataX.i[[i]]$X[,col_order]
 }
 
-# Save X data
-save(resu.sim.dataX.i,file="baseline/resu.sim.dataX.i.RData")
+#save(resu.sim.dataX.i,file="baseline/resu.sim.dataX.i.RData")
+load(file="baseline/resu.sim.dataX.i.RData")
+
+test<-resu.sim.dataX.i[[1]]$X
 
 
 
-###### Simulate Y data under scenario 1
+library(corrplot)
+cor_mat1<-cor(test)
 
-# Simulate Y data (simtestY1) : all X time points are causaly associated with Y
+pdf(file = "Baseline/plot_mat1.pdf") # The height of the plot in inches
+corrplot(cor_mat1,tl.pos = "n",title = "All variables - 1st imputed dataset")
+corrplot(cor_mat1[1:100,1:100],tl.pos = "n",title = "First 100 variables - 1st imputed dataset")
+corrplot(cor_mat1[1:30,1:30],title = "First 30 variables - 1st imputed dataset")
+dev.off()
+
+resu.sim.dataX.i[[1]]$rho.vec
+
+
+#---------#####---------#####---------#####---------#####---------#
+#EXPLORE CORRELATION
+# 
+# library(corrplot)
+# corrAll <- cor(test)
+# Xfake <- test
+# corT5 <- cor(Xfake[,seq(0,265,by=5)[-1]])
+# caret::findCorrelation(corT5, .8)
+# 
+# corT4 <- cor(Xfake[,seq(-1,265,by=5)[-1]])
+# caret::findCorrelation(corT4, .8)
+# 
+# corT3 <- cor(Xfake[,seq(-2,265,by=5)[-1]])
+# caret::findCorrelation(corT4, .8)
+# 
+# corT2 <- cor(Xfake[,seq(-3,265,by=5)[-1]])
+# caret::findCorrelation(corT2, .8)
+# 
+# corT1 <- cor(Xfake[,seq(-4,265,by=5)[-1]])
+# caret::findCorrelation(corT1, .8)
+# 
+# toremove <- names(Xfake[,seq(0,265,by=5)[-1]])[caret::findCorrelation(corT5, .8)]
+# toremove <- gsub("\\..*","",toremove)
+# toremove <-  toremove
+# Xfake <- Xfake[,-which(gsub("\\..*","",names(Xfake)) %in% toremove)]
+# dim(Xfake)
+# names(Xfake)
+# 
+# 
+# tmp = corrAll # Copy matrix
+# tmp[ tmp > -0.95 & tmp < 0.95 ] = 0
+# 
+# 
+# # tmp
+# pdf("asda.pdf")
+# corrplot(tmp, tl.col = "red", tl.srt = 45, bg = "White",
+#          title = "\n\n DLNM correlation plot",
+#          type = "lower",
+#          tl.cex=0.1,
+#          pch.cex=0.3)
+# dev.off()
+
+#---------#####---------#####---------#####---------#####---------#
+
+
+
+
+######### DATA 1
+
+# Simulate Y data (simtestY1) : X measured at all time point associated with Y
 #     X = Exposure data
-#     nsim = number of simulations = 100
-#     n.true.exposures = k = number of exposures associated with Y (multiplied by number of time points) = 3*5
-#     nvars = Number of exposure for each time point = 100
-#     N = number of subjects = 1200
+#     nsim = number of simulation = 100
+#     n.true.exposures = number of exposures associated with Y (multiplied by number of time points) = 3*5
+#     nvars = Number of exposure for each time point
+#     N = number of subjects
 
 
-### Simulate Y data, under scenario 1, when k=3 
+
+# k=3 true X
+
 nexp<-3
 
 resu.sim.data1.exp3 <- vector("list", nsim)
 for(i in 1:nsim) {
   data.X<-as.data.frame(resu.sim.dataX.i[[i]]$X)
-  resu.sim.data1.exp3[[i]] = simtestY1(X=data.X, n.true.exposures=nexp, nvars=100, N = 1200)
+  resu.sim.data1.exp3[[i]] = simtestY1(X=data.X,n.true.exposures=nexp,nvars=100,N = 1200)
 }
 
-# Save Y data, under scenario 1, when k=3
+# store the list object to used it later
 save(resu.sim.data1.exp3,file="dataY1andX/exp3/resu.sim.data1.exp3.RData")
 
 
-### Simulate Y data, under scenario 1, when k=5 
+# k=5 true X
+
 nexp<-5
 
 resu.sim.data1.exp5 <- vector("list", nsim)
@@ -78,11 +199,12 @@ for(i in 1:nsim) {
   resu.sim.data1.exp5[[i]] = simtestY1(X=data.X,n.true.exposures=nexp,nvars=100,N = 1200)
 }
 
-# Save Y data, under scenario 1, when k=5
+# store the list object to used it later
 save(resu.sim.data1.exp5,file="dataY1andX/exp5/resu.sim.data1.exp5.RData")
 
 
-### Simulate Y data, under scenario 1, when k=10
+# k=10 true X
+
 nexp<-10
 
 resu.sim.data1.exp10 <- vector("list", nsim)
@@ -91,22 +213,23 @@ for(i in 1:nsim) {
   resu.sim.data1.exp10[[i]] = simtestY1(X=data.X,n.true.exposures=nexp,nvars=100,N = 1200)
 }
 
-# Save Y data, under scenario 1, when k=10
+# store the list object to used it later
 save(resu.sim.data1.exp10,file="dataY1andX/exp10/resu.sim.data1.exp10.RData")
 
 
-###### Simulate Y data under scenario 2
+######### DATA 2
+
 
 # Simulate Y data (simtestY2) : X measured at all time point associated with Y
 #     X = Exposure data
 #     nsim = number of simulation = 100
-#     n.true.exposures = k = number of exposures associated with Y (multiplied by number of time points = 1) = 3*1
-#     nvars = Number of exposure for each time point = 100
-#     N = number of subjects = 1200
+#     n.true.exposures = number of exposures associated with Y (multiplied by number of time points) = 3*5
+#     nvars = Number of exposure for each time point
+#     N = number of subjects
 
 
+# k=3 true X
 
-### Simulate Y data, under scenario 2, when k=3 
 nexp<-3
 
 resu.sim.data2.exp3 <- vector("list", nsim)
@@ -115,12 +238,12 @@ for(i in 1:nsim) {
   resu.sim.data2.exp3[[i]] = simtestY2(X=data.X,n.true.exposures=nexp,nvars=100,N = 1200)
 }
 
-# Save Y data, under scenario 2, when k=3
+# store the list object to used it later
 save(resu.sim.data2.exp3,file="dataY2andX/exp3/resu.sim.data2.exp3.RData")
 
 
+# k=5 true X
 
-### Simulate Y data, under scenario 2, when k=5 
 nexp<-5
 
 resu.sim.data2.exp5 <- vector("list", nsim)
@@ -129,11 +252,12 @@ for(i in 1:nsim) {
   resu.sim.data2.exp5[[i]] = simtestY2(X=data.X,n.true.exposures=nexp,nvars=100,N = 1200)
 }
 
-# Save Y data, under scenario 2, when k=5
+# store the list object to used it later
 save(resu.sim.data2.exp5,file="dataY2andX/exp5/resu.sim.data2.exp5.RData")
 
 
-### Simulate Y data, under scenario 2, when k=10
+# k=10 true X
+
 nexp<-10
 
 resu.sim.data2.exp10 <- vector("list", nsim)
@@ -142,19 +266,15 @@ for(i in 1:nsim) {
   resu.sim.data2.exp10[[i]] = simtestY2(X=data.X,n.true.exposures=nexp,nvars=100,N = 1200)
 }
 
-# Save Y data, under scenario 2, when k=10
+# store the list object to used it later
 save(resu.sim.data2.exp10,file="dataY2andX/exp10/resu.sim.data2.exp10.RData")
 
 
 
+################## 2-step approaches
 
 
-
-################## Reorganizing X data for the 2-step approaches
-
-
-
-##### Reshape dataX from wide to long format
+#### reshape dataX into long format
 
 reshap.long<-function(X,nvars,r){
   lnames = list()
@@ -178,7 +298,7 @@ for(i in 1:nsim) {
 save(Xlong.i,file="baseline/Xlong.i.RData")
 
 
-##### Calculate the average exposure level across the time points
+#### average of all time points
 
 average.long<-function(data.X){
   data.X.av<- data.X %>%
@@ -189,23 +309,26 @@ average.long<-function(data.X){
   return(data.X.av)
 }
 
+
 Xave.i <- vector("list", nsim)
 for(i in 1:nsim) {
   Xave.i[[i]]<-average.long(data.X=Xlong.i[[i]])
 }
-
 save(Xave.i,file="baseline/Xave.i.RData")
 
 
-##### Renaming the true predictors of Y stored in resu.sim.dataX.expX$true.pred (from .1, .2, .3, .4, .5 to _mean)
 
-### Under scenario 1, when k=3
+###### data Y1 - denominator = 100
+
+
+## exp3
+
 nexp<-3
 
 # load Y data (simulated from raw X data, not X average)
 load(file="dataY1andX/exp3/resu.sim.data1.exp3.RData")
 
-# create a new object with Y data modifying the true.pred list (eg, from X15.1 X15.2 X15.3 X15.4 X15.5 to X15_mean)
+# create a new object with Y data modifying the true.pred list (eg, from X15.1 X15.2 X15.3 X15.4 X15.5 to X15_100)
 resu.sim.data1av.exp3.100<-resu.sim.data1.exp3
 
 for (i in 1:100){
@@ -220,13 +343,15 @@ for (i in 1:100){
 save(resu.sim.data1av.exp3.100,file="dataY1andX/exp3/twostep/resu.sim.data1av.exp3.100.RData")
 
 
-### Under scenario 1, when k=5
+
+## exp5
+
 nexp<-5
 
 # load Y data (simulated from raw X data, not X average)
 load(file="dataY1andX/exp5/resu.sim.data1.exp5.RData")
 
-# create a new object with Y data modifying the true.pred list (eg, from X15.1 X15.2 X15.3 X15.4 X15.5 to X15_mean)
+# create a new object with Y data modifying the true.pred list (eg, from X15.1 X15.2 X15.3 X15.4 X15.5 to X15_100)
 resu.sim.data1av.exp5.100<-resu.sim.data1.exp5
 
 for (i in 1:100){
@@ -241,13 +366,14 @@ for (i in 1:100){
 save(resu.sim.data1av.exp5.100,file="dataY1andX/exp5/twostep/resu.sim.data1av.exp5.100.RData")
 
 
-### Under scenario 1, when k=10
+## exp10
+
 nexp<-10
 
 # load Y data (simulated from raw X data, not X average)
 load(file="dataY1andX/exp10/resu.sim.data1.exp10.RData")
 
-# create a new object with Y data modifying the true.pred list (eg, from X15.1 X15.2 X15.3 X15.4 X15.5 to X15_mean)
+# create a new object with Y data modifying the true.pred list (eg, from X15.1 X15.2 X15.3 X15.4 X15.5 to X15_100)
 resu.sim.data1av.exp10.100<-resu.sim.data1.exp10
 
 for (i in 1:100){
@@ -262,13 +388,19 @@ for (i in 1:100){
 save(resu.sim.data1av.exp10.100,file="dataY1andX/exp10/twostep/resu.sim.data1av.exp10.100.RData")
 
 
-### Under scenario 2, when k=3
+
+
+###### data Y2 - denominator = 100
+
+
+## exp3
+
 nexp<-3
 
 # load Y data (simulated from raw X data, not X average)
 load(file="dataY2andX/exp3/resu.sim.data2.exp3.RData")
 
-# create a new object with Y data modifying the true.pred list (eg, from X15.1 X15.2 X15.3 X15.4 X15.5 to X15_mean)
+# create a new object with Y data modifying the true.pred list (eg, from X15.1 X15.2 X15.3 X15.4 X15.5 to X15_100)
 resu.sim.data2av.exp3.100<-resu.sim.data2.exp3
 
 for (i in 1:100){
@@ -283,13 +415,15 @@ for (i in 1:100){
 save(resu.sim.data2av.exp3.100,file="dataY2andX/exp3/twostep/resu.sim.data2av.exp3.100.RData")
 
 
-### Under scenario 2, when k=5
+
+## exp5
+
 nexp<-5
 
 # load Y data (simulated from raw X data, not X average)
 load(file="dataY2andX/exp5/resu.sim.data2.exp5.RData")
 
-# create a new object with Y data modifying the true.pred list (eg, from X15.1 X15.2 X15.3 X15.4 X15.5 to X15_mean)
+# create a new object with Y data modifying the true.pred list (eg, from X15.1 X15.2 X15.3 X15.4 X15.5 to X15_100)
 resu.sim.data2av.exp5.100<-resu.sim.data2.exp5
 
 for (i in 1:100){
@@ -304,13 +438,14 @@ for (i in 1:100){
 save(resu.sim.data2av.exp5.100,file="dataY2andX/exp5/twostep/resu.sim.data2av.exp5.100.RData")
 
 
-### Under scenario 2, when k=10
+## exp10
+
 nexp<-10
 
 # load Y data (simulated from raw X data, not X average)
 load(file="dataY2andX/exp10/resu.sim.data2.exp10.RData")
 
-# create a new object with Y data modifying the true.pred list (eg, from X15.1 X15.2 X15.3 X15.4 X15.5 to X15_mean)
+# create a new object with Y data modifying the true.pred list (eg, from X15.1 X15.2 X15.3 X15.4 X15.5 to X15_100)
 resu.sim.data2av.exp10.100<-resu.sim.data2.exp10
 
 for (i in 1:100){
@@ -323,4 +458,48 @@ for (i in 1:100){
 }
 
 save(resu.sim.data2av.exp10.100,file="dataY2andX/exp10/twostep/resu.sim.data2av.exp10.100.RData")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
