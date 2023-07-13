@@ -258,7 +258,8 @@ for(i in 1:nsim) {
   RES1av.Ewas.i.exp3.100[[i]]$numsim<-i
 }
 
-save(RES1av.Ewas.i.exp3.100,file="RES1av.Ewas.i.exp3.100.RData")
+save(RES1av.Ewas.i.exp3.100,file="./results/two_step/dataY1andX/exp3/RES1av.Ewas.i.exp3.100.RData")
+
 
 
 #####   ****************  ENET  ****************  
@@ -271,7 +272,7 @@ for(i in 1:nsim) {
   RES1av.Enet.i.exp3.100[[i]]$numsim<-i
 }
 
-save(RES1av.Enet.i.exp3.100,file="RES1av.Enet.i.exp3.100.RData")
+save(RES1av.Enet.i.exp3.100,file="./results/two_step/dataY1andX/exp3/RES1av.Enet.i.exp3.100.RData")
 
 
 #####   ****************  sPLS  ****************  
@@ -284,7 +285,7 @@ for(i in 1:nsim) {
   RES1av.sPLS.i.exp3.100[[i]]$numsim<-i
 }
 
-save(RES1av.sPLS.i.exp3.100,file="RES1av.sPLS.i.exp3.100.RData")
+save(RES1av.sPLS.i.exp3.100,file="./results/two_step/dataY1andX/exp3/RES1av.sPLS.i.exp3.100.RData")
 
 
 #####   ****************  DSA  ****************  
@@ -297,7 +298,7 @@ for(i in 1:nsim) {
   RES1av.DSA.i.exp3.100[[i]]$numsim<-i
 }
 
-save(RES1av.DSA.i.exp3.100,file="RES1av.DSA.i.exp3.100.RData")
+save(RES1av.DSA.i.exp3.100,file="./results/two_step/dataY1andX/exp3/RES1av.DSA.i.exp3.100.RData")
 
 
 
@@ -336,7 +337,7 @@ for(i in 1:nsim) {
   RES1av.Ewas.i.redExWAS.exp3[[i]]<-RES1av.Ewas.i.redExWAS.exp3[[i]][colnames(RES1av.Ewas.i.redExWAS.exp3[[i]])%in%c("var","val","Est","pVal","EWAS.none","EWAS.TP.none","true.pred","nsim","candidate.red")]
 }
 
-save(RES1av.Ewas.i.redExWAS.exp3,file="RES1av.Ewas.i.redExWAS.exp3.RData")
+save(RES1av.Ewas.i.redExWAS.exp3,file="./results/two_step/dataY1andX/exp3/RES1av.Ewas.i.redExWAS.exp3.RData")
 
 #####   ****************  ExWAS - LM  ****************
 
@@ -360,7 +361,7 @@ for(i in 1:nsim) {
   RES1av.EwasLM.i.redExWASLM.exp3[[i]]<-RES1av.EwasLM.i.redExWASLM.exp3[[i]][colnames(RES1av.EwasLM.i.redExWASLM.exp3[[i]])%in%c("var","val","Est","pVal","EWAS_LM.none","EWAS_LM.TP.none","true.pred","nsim","candidate.red")]
 }
 
-save(RES1av.EwasLM.i.redExWASLM.exp3,file="RES1av.EwasLM.i.redExWASLM.exp3.RData")
+save(RES1av.EwasLM.i.redExWASLM.exp3,file="./results/two_step/dataY1andX/exp3/RES1av.EwasLM.i.redExWASLM.exp3.RData")
 
 #####   ****************  ExWAS - Bonferroni  ****************
 
@@ -384,7 +385,7 @@ for(i in 1:nsim) {
   RES1av.EwasBonf.i.redExWASBonf.exp3[[i]]<-RES1av.EwasBonf.i.redExWASBonf.exp3[[i]][colnames(RES1av.EwasBonf.i.redExWASBonf.exp3[[i]])%in%c("var","val","Est","pVal","EWAS.TP.bon","true.pred","nsim","candidate.red")]
 }
 
-save(RES1av.EwasBonf.i.redExWASBonf.exp3,file="RES1av.EwasBonf.i.redExWASBonf.exp3.RData")
+save(RES1av.EwasBonf.i.redExWASBonf.exp3,file="./results/two_step/dataY1andX/exp3/RES1av.EwasBonf.i.redExWASBonf.exp3.RData")
 
 
 #####   ****************  ExWAS - Bonf LM  ****************
@@ -409,7 +410,7 @@ for(i in 1:nsim) {
   RES1av.EwasBonfLM.i.redExWASBonfLM.exp3[[i]]<-RES1av.EwasBonfLM.i.redExWASBonfLM.exp3[[i]][colnames(RES1av.EwasBonfLM.i.redExWASBonfLM.exp3[[i]])%in%c("var","val","Est","pVal","EWAS_LM.bon","EWAS_LM.TP.bon","true.pred","nsim","candidate.red")]
 }
 
-save(RES1av.EwasBonfLM.i.redExWASBonfLM.exp3,file="RES1av.EwasBonfLM.i.redExWASBonfLM.exp3.RData")
+save(RES1av.EwasBonfLM.i.redExWASBonfLM.exp3,file="./results/two_step/dataY1andX/exp3/RES1av.EwasBonfLM.i.redExWASBonfLM.exp3.RData")
 
 
 
@@ -435,7 +436,7 @@ for(i in 1:nsim) {
   RES1av.EwasBH.i.redExWASBH.exp3[[i]]<-RES1av.EwasBH.i.redExWASBH.exp3[[i]][colnames(RES1av.EwasBH.i.redExWASBH.exp3[[i]])%in%c("var","val","Est","pVal","EWAS.TP.bh","true.pred","nsim","candidate.red")]
 }
 
-save(RES1av.EwasBH.i.redExWASBH.exp3,file="RES1av.EwasBH.i.redExWASBH.exp3.RData")
+save(RES1av.EwasBH.i.redExWASBH.exp3,file="./results/two_step/dataY1andX/exp3/RES1av.EwasBH.i.redExWASBH.exp3.RData")
 
 
 #####   ****************  ExWAS - BH LM  ****************
@@ -460,7 +461,7 @@ for(i in 1:nsim) {
   RES1av.EwasBHLM.i.redExWASBHLM.exp3[[i]]<-RES1av.EwasBHLM.i.redExWASBHLM.exp3[[i]][colnames(RES1av.EwasBHLM.i.redExWASBHLM.exp3[[i]])%in%c("var","val","Est","pVal","EWAS_LM.bh","EWAS_LM.TP.bh","true.pred","nsim","candidate.red")]
 }
 
-save(RES1av.EwasBHLM.i.redExWASBHLM.exp3,file="RES1av.EwasBHLM.i.redExWASBHLM.exp3.RData")
+save(RES1av.EwasBHLM.i.redExWASBHLM.exp3,file="./results/two_step/dataY1andX/exp3/RES1av.EwasBHLM.i.redExWASBHLM.exp3.RData")
 
 
 #####   ****************  ExWAS - BY  ****************
@@ -485,7 +486,7 @@ for(i in 1:nsim) {
   RES1av.EwasBY.i.redExWASBY.exp3[[i]]<-RES1av.EwasBY.i.redExWASBY.exp3[[i]][colnames(RES1av.EwasBY.i.redExWASBY.exp3[[i]])%in%c("var","val","Est","pVal","EWAS.TP.by","true.pred","nsim","candidate.red")]
 }
 
-save(RES1av.EwasBY.i.redExWASBY.exp3,file="RES1av.EwasBY.i.redExWASBY.exp3.RData")
+save(RES1av.EwasBY.i.redExWASBY.exp3,file="./results/two_step/dataY1andX/exp3/RES1av.EwasBY.i.redExWASBY.exp3.RData")
 
 
 #####   ****************  ExWAS - BY LM  ****************
@@ -510,7 +511,7 @@ for(i in 1:nsim) {
   RES1av.EwasBYLM.i.redExWASBYLM.exp3[[i]]<-RES1av.EwasBYLM.i.redExWASBYLM.exp3[[i]][colnames(RES1av.EwasBYLM.i.redExWASBYLM.exp3[[i]])%in%c("var","val","Est","pVal","EWAS_LM.by","EWAS_LM.TP.by","true.pred","nsim","candidate.red")]
 }
 
-save(RES1av.EwasBYLM.i.redExWASBYLM.exp3,file="RES1av.EwasBYLM.i.redExWASBYLM.exp3.RData")
+save(RES1av.EwasBYLM.i.redExWASBYLM.exp3,file="./results/two_step/dataY1andX/exp3/RES1av.EwasBYLM.i.redExWASBYLM.exp3.RData")
 
 
 #####   ****************  Enet - MIN  ****************
@@ -533,7 +534,7 @@ for(i in 1:nsim) {
   RES1av.Enet.i.redEnetMin.exp3[[i]]$numsim<-i
   RES1av.Enet.i.redEnetMin.exp3[[i]]$candidate.red[RES1av.Enet.i.redEnetMin.exp3[[i]]$var %in% colnames(resu.sim.dataX.i.red[[i]]$X)]<-1 
 }
-save(RES1av.Enet.i.redEnetMin.exp3,file="RES1av.Enet.i.redEnetMin.exp3.RData")
+save(RES1av.Enet.i.redEnetMin.exp3,file="./results/two_step/dataY1andX/exp3/RES1av.Enet.i.redEnetMin.exp3.RData")
 
 
 #####   ****************  Enet - OPT  ****************
@@ -568,7 +569,7 @@ for(i in 1:nsim) {
     RES1av.Enet.i.redEnetOpt.exp3[[i]]$candidate.red[RES1av.Enet.i.redEnetOpt.exp3[[i]]$var %in% colnames(resu.sim.dataX.i.red[[i]]$X)]<-1 
   }
 }
-save(RES1av.Enet.i.redEnetOpt.exp3,file="RES1av.Enet.i.redEnetOpt.exp3.RData")
+save(RES1av.Enet.i.redEnetOpt.exp3,file="./results/two_step/dataY1andX/exp3/RES1av.Enet.i.redEnetOpt.exp3.RData")
 
 
 
@@ -592,7 +593,7 @@ for(i in 1:nsim) {
   RES1av.sPLS.i.redsPLS.exp3[[i]]$numsim<-i
   RES1av.sPLS.i.redsPLS.exp3[[i]]$candidate.red[RES1av.sPLS.i.redsPLS.exp3[[i]]$var %in% colnames(resu.sim.dataX.i.red[[i]]$X)]<-1 
 }
-save(RES1av.sPLS.i.redsPLS.exp3,file="RES1av.sPLS.i.redsPLS.exp3.RData")
+save(RES1av.sPLS.i.redsPLS.exp3,file="./results/two_step/dataY1andX/exp3/RES1av.sPLS.i.redsPLS.exp3.RData")
 
 
 #####   ****************  DSA   ****************
@@ -619,7 +620,7 @@ for(i in 1:nsim) {
     RES1av.DSA.i.redDSA.exp3[[i]]$candidate.red[RES1av.DSA.i.redDSA.exp3[[i]]$var %in% colnames(resu.sim.dataX.i.red[[i]]$X)]<-1 
   }
 }
-save(RES1av.DSA.i.redDSA.exp3,file="RES1av.DSA.i.redDSA.exp3.RData")
+save(RES1av.DSA.i.redDSA.exp3,file="./results/two_step/dataY1andX/exp3/RES1av.DSA.i.redDSA.exp3.RData")
 
 
 
