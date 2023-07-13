@@ -41,7 +41,7 @@
 ##
 ##
 ## Last update: 09-05-2023
-## Authors: Charline Warembourg <charline.warembourg@univ-rennes1.fr> Augusto Anguita <augusto.anguita@isglobal.org>  Xavier Basagaña <xavier.basagana@isglobal.org> 
+## Authors: Charline Warembourg <charline.warembourg@inserm.fr> Augusto Anguita <augusto.anguita@isglobal.org>  Xavier Basagaña <xavier.basagana@isglobal.org> 
 ################################################################################################################################################################################################################################################
 
 
@@ -164,7 +164,7 @@ rebuild.ICC = function(nt,index.exposures,ICC,rho) {
 simul =  function(N,nt,index.exposures,ICC) {
 	  # N: sample size
 	  # nt: number of time points
-	  # index.exposures: the index for the exposures in cormat.ordered
+	  # index.exposures: the index for the exposures in Sigma (correlation matrix)
 	  #        e.g. if we want to generate 122 exposures, index.exposures = 1:122
 	  #        e.g. if we want to generate 50 exposures highly correlated, index.exposures = 1:50
 	  #        e.g. if we want to generate 50 exposures with low correlation, index.exposures = 73:122
@@ -245,7 +245,7 @@ simul =  function(N,nt,index.exposures,ICC) {
 ######################################################################################################
 
 
-simX <- function(cormat.ordered=cormat.ordered,N = 1200){
+simX <- function(Sigma=Sigma,N = 1200){
    # Here I'm taking a random sample of 100 exposures
    index.exposures = sample(1:122,100,replace=F)
    nvars = length(index.exposures)
@@ -275,7 +275,7 @@ simX <- function(cormat.ordered=cormat.ordered,N = 1200){
    S = simdata[[2]]   # S was called U in the previous code
 
    # in case they are needed, names of original variables used to simulate
-   names.vec = rownames(cormat.ordered)[index.exposures]
+   names.vec = rownames(Sigma)[index.exposures]
 
   
   X.list<-list(X=X,rho.vec=ICC)
