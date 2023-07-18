@@ -226,6 +226,40 @@ save(RES2.sNPLS.i.exp5,file="./results/one_step/dataY2andX/exp5/RES2.sNPLS.i.exp
 
 
 
+#####  ****************  Merge all results ****************
+
+
+RES2.i.all.exp5<-vector("list",nsim)
+for(i in 1:nsim) {
+  RES2.i.all.exp5[[i]]<-Reduce(function(x, y) merge(x, y, all=TRUE), 
+                               list(RES2.Ewas.i.exp5[[i]], RES2.Enet.i.exp5[[i]], RES2.sPLS.i.exp5[[i]],
+                                    RES2.sNPLS.i.exp5[[i]],RES2.DSA.i.exp5[[i]],RES2.DLNM.i.all.exp5[[i]],RES2.sNPLS.i.exp5[[i]]))
+}
+save(RES2.i.all.exp5,file="RES2.i.all.exp5.RData")
+
+RES2.all.exp5<-matrix(ncol=dim(RES2.i.all.exp5[[1]])[2])
+colnames(RES2.all.exp5)<-colnames(RES2.i.all.exp5[[1]])
+for (i in 1:nsim){
+  RES2.all.exp5<-rbind(RES2.all.exp5,RES2.i.all.exp5[[i]])
+}
+
+RES2.all.exp5<-RES2.all.exp5[-1,c("var","numsim","true.pred","EWAS.TP.none","EWAS_LM.TP.none",
+                                  "EWAS.TP.bon","EWAS_LM.TP.bon","EWAS.TP.bh","EWAS_LM.TP.bh",  
+                                  "EWAS.TP.by","EWAS_LM.TP.by","ENET_MIN.TP","ENET_OPT.TP",
+                                  "SPLS_MIN.TP","sNPLS.TP","DSA.TP",
+                                  "DLNMpen.none","DLNMpen.bonf","DLNMpen.bh","DLNMpen.by",
+                                  "DLNMselect.none","DLNMselect.bonf","DLNMselect.bh","DLNMselect.by",  
+                                  "DLNMselectback.none","DLNMselectback.bonf","DLNMselectback.bh","DLNMselectback.by",
+                                  "DLNMselectforward.none","DLNMselectforward.bonf","DLNMselectforward.bh","DLNMselectforward.by",
+				  "sNPLS.TP")]
+save(RES2.all.exp5,file="RES2.all.exp5.RData")
+
+
+
+
+
+
+
 
 #   ********************************  TWO-STEP APPROACH   ********************************  #
 
