@@ -54,8 +54,10 @@ getwd()
 
 
 
-
+#   **************************************************************************************  #
 #   ********************************  ONE-STEP APPROACH   ********************************  #
+#   **************************************************************************************  #
+
 
 
 ########################################################
@@ -257,12 +259,37 @@ save(RES1.all.exp3,file="RES1.all.exp3.RData")
 
 
 
+#####  ****************  Calculate the performances (sensitivity and FDR) ****************
+
+
+# Call the calculateMetrics function to identify the true exposures at the true time point (bytime=1)
+results_500  <- calculateMetrics(data=RES1.all.exp3,bytime=1)
+
+# Access the performances of each method by simulated dataset 
+performance_detail_500 <- results_500$performance_detail
+
+# Access the overall performances of each method (mean and sd of all simulated datasets)
+performance_summary_500 <- results_500$performance_summary
+
+
+
+# Call the calculateMetrics function to identify the true exposures independently of the true time point (bytime=0)
+results_100  <- calculateMetrics(data=RES1.all.exp3,bytime=0)
+
+# Access the performances of each method by simulated dataset 
+performance_detail_100 <- results_100$performance_detail
+
+# Access the overall performances of each method (mean and sd of all simulated datasets)
+performance_summary_100 <- results_100$performance_summary
 
 
 
 
+
+
+#   **************************************************************************************  #
 #   ********************************  TWO-STEP APPROACH   ********************************  #
-
+#   **************************************************************************************  #
 
 
 
