@@ -54,7 +54,7 @@
 
 
 list.of.packages <- c(
-  "Matrix","MASS","parallel","glmnet","spls","MXM","DSA","dlnm","splines","mgcv","sNPLS","plyr","stringr","foreach","doParallel","ranger","palmerpenguins","tidyverse","kableExtra","future"
+  "Matrix","MASS","parallel","glmnet","spls","MXM","DSA","dlnm","splines","mgcv","sNPLS","plyr","stringr","foreach","doParallel","ranger","palmerpenguins","tidyverse","kableExtra","future","dplyr"
 )
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages) > 0){
@@ -74,6 +74,8 @@ options(max.print=100000)
 print("Step 1 - Required R libraries successfully loaded")
 
 
+
+##### --------------------------------------------------------- 1. DATA SIMULATION --------------------------------------------------------- ##### 
 
 
 
@@ -338,6 +340,10 @@ simtestY2 <- function(X=data.X,n.true.exposures=3,nvars=100,N = 1200){
 }
 
 
+
+
+
+##### --------------------------------------------------------- 2. IMPLEMENTATION OF EACH METHOD --------------------------------------------------------- ##### 
 
 
 
@@ -840,6 +846,208 @@ applyDLNMselectAVG <-function(data.Y,data.X){
 
 
 
+
+
+##### --------------------------------------------------------- 3. SUMMARY OF THE PERFOMANCES OF THE METHODS --------------------------------------------------------- ##### 
+
+
+
+
+##################################################################################
+## Functions to create 2x2 table to compare the expected and observed selection ##
+## 	This function is called within the calculateMetrics() function		##
+##################################################################################
+
+squareTable <- function(x,y) {
+  x <- factor(x)
+  y <- factor(y)
+  commonLevels <- c("0","1")
+  x <- factor(x, levels = commonLevels)
+  y <- factor(y, levels = commonLevels)
+  table(x,y)
+}
+
+
+############################################################################################################
+## Function to arrange the input dataset to calculate the performance independently of the true timepoint ##
+## 		This function is called within the calculateMetrics() function when bytime=0		  ##
+############################################################################################################
+
+
+data100 <- function(data) {
+  
+  df <- data
+  
+  # arrange df to calculate the performance whatever the true timepoint
+  df$expo_name<-ifelse(nchar(as.character(df$var))==4,substring(df$var,first=1,last=2),
+                       ifelse(nchar(as.character(df$var))==5,substring(df$var,first=1,last=3),
+                              substring(df$var,first=1,last=4)))
+  nb_col<-dim(df)[2]
+  df<-df[,c(1:3,nb_col,4:(nb_col<-dim(df)[2]-1))]
+  
+  numcol_name<-c("true.pred","EWAS.TP.none","EWAS_LM.TP.none","EWAS.TP.bon","EWAS_LM.TP.bon","EWAS.TP.bh",
+                 "EWAS_LM.TP.bh", "EWAS.TP.by","EWAS_LM.TP.by","ENET_MIN.TP","ENET_OPT.TP","SPLS_MIN.TP",
+                 "sNPLS.TP","MMPC.TP","DSA.TP","DLNMpen.none","DLNMpen.bonf","DLNMpen.bh","DLNMpen.by",
+                 "DLNMselect.none","DLNMselect.bonf","DLNMselect.bh","DLNMselect.by",  
+                 "DLNMselectback.none","DLNMselectback.bonf","DLNMselectback.bh","DLNMselectback.by",
+                 "DLNMselectforward.none","DLNMselectforward.bonf","DLNMselectforward.bh","DLNMselectforward.by")
+  
+  for (j in which(colnames(df)%in%numcol_name)){
+    df[,j]<-as.numeric(as.character(df[,j]))
+  } 
+  
+
+  df_100 <- df %>% group_by(numsim,expo_name) %>% 
+    summarise_at(.vars = numcol_name,
+                 .funs = sum)  
+  
+  
+  df_100<-as.data.frame(df_100)
+  
+  # Replace all values greater than 0 with 1 in specific columns
+  df_100 <- df_100 %>% mutate(across(all_of(numcol_name), ~ifelse(. > 0, 1, .)))
+  
+  return(df_100)
+}  
+
+
+
+#######################################################################################################
+## Function to calculate the performance of each method, both considering or not the true time point ##
+#######################################################################################################
+
+
+calculateMetrics <- function(data,bytime) {	# bytime=1 to calculate the performances to identify the true time point and bytime=0 to calculate the performances independently of the true time point 
+  if (bytime==1) {
+    # Create an empty data frame to store the detailed results
+    performance_detail <- data.frame(numsim = integer(),
+                                       method = character(),
+                                       sensitivity = numeric(),
+                                       specificity = numeric(),
+                                       fpr = numeric(),
+                                       fnr = numeric(),
+                                       false_discovery_rate = numeric(),
+                                       false_omit_rate = numeric(),
+                                       stringsAsFactors = FALSE)
+    
+    # Create an empty data frame to store the summarized results
+    performance_summary <- data.frame(method = character(),
+                                  mean_sensitivity = numeric(),
+                                  mean_specificity = numeric(),
+                                  mean_fpr = numeric(),
+                                  mean_fnr = numeric(),
+                                  mean_false_discovery_rate = numeric(),
+                                  mean_false_omit_rate = numeric(),
+                                  stringsAsFactors = FALSE)
+    
+    df <- data
+  }
+  
+  else if (bytime==0) {
+    # Create an empty data frame to store the detailed results
+    performance_detail <- data.frame(numsim = integer(),
+                                       method = character(),
+                                       sensitivity = numeric(),
+                                       specificity = numeric(),
+                                       fpr = numeric(),
+                                       fnr = numeric(),
+                                       false_discovery_rate = numeric(),
+                                       false_omit_rate = numeric(),
+                                       stringsAsFactors = FALSE)
+    
+    # Create an empty data frame to store the summarized results
+    performance_summary <- data.frame(method = character(),
+                                  mean_sensitivity = numeric(),
+                                  mean_specificity = numeric(),
+                                  mean_fpr = numeric(),
+                                  mean_fnr = numeric(),
+                                  mean_false_discovery_rate = numeric(),
+                                  mean_false_omit_rate = numeric(),
+                                  stringsAsFactors = FALSE)
+    
+    df <- data100(data)
+  }
+  
+  nb_col<-dim(df)[2]
+
+  # list of methods of interest
+  numcol_method<-which(colnames(df)%in%c("EWAS.TP.none","EWAS_LM.TP.none","EWAS.TP.bon","EWAS_LM.TP.bon","EWAS.TP.bh",
+                                         "EWAS_LM.TP.bh", "EWAS.TP.by","EWAS_LM.TP.by","ENET_MIN.TP","ENET_OPT.TP","SPLS_MIN.TP",
+                                         "sNPLS.TP","MMPC.TP","DSA.TP","DLNMpen.none","DLNMpen.bonf","DLNMpen.bh","DLNMpen.by",
+                                         "DLNMselect.none","DLNMselect.bonf","DLNMselect.bh","DLNMselect.by",  
+                                         "DLNMselectback.none","DLNMselectback.bonf","DLNMselectback.bh","DLNMselectback.by",
+                                         "DLNMselectforward.none","DLNMselectforward.bonf","DLNMselectforward.bh","DLNMselectforward.by"))
+  
+  for (i in 1:100) {
+    # Iterate over each method
+    for (method_col in numcol_method) {
+      df2<-df[df$numsim==i,]
+      # Get the column name representing the method
+      method_name <- names(df2)[method_col]
+      
+      # Extract the true predictor and method 
+      true_pred <- df2$true.pred
+      method_sel <- df2[, method_col]
+      
+      # Calculate the contingency table using the squareTable function
+      table_result <- squareTable(method_sel, true_pred)
+      
+      # Calculate TP, TN, FP, FN
+      tp <- table_result[2, 2]
+      tn <- table_result[1, 1]
+      fp <- table_result[2, 1]
+      fn <- table_result[1, 2]
+      
+      # Calculate sensitivity, specificity, false_positive_rate, false_negative_rate, false discovery rate, false omit rate
+      sensitivity <- ifelse((tp + fn) == 0, 0, tp / (tp + fn))
+      specificity <- ifelse((tn + fp) == 0, 0, tn / (tn + fp))
+      false_positive_rate <- ifelse((fp + tn) == 0, 0, fp / (fp + tn))
+      false_negative_rate <- ifelse((fn + tp) == 0, 0, fn / (fn + tp))
+      false_discovery_rate <- ifelse((fp + tp) == 0, 0, fp / (fp + tp))
+      false_omit_rate <- ifelse((fn + tn) == 0, 0, fn / (fn + tn))
+      
+      # Store detailed results
+      performance_detail <- rbind(performance_detail, data.frame(numsim = i,
+                                                                     method = method_name,
+                                                                     sensitivity = sensitivity,
+                                                                     specificity = specificity,
+                                                                     false_positive_rate = false_positive_rate,
+                                                                     false_negative_rate = false_negative_rate,
+                                                                     false_discovery_rate = false_discovery_rate,
+                                                                     false_omit_rate = false_omit_rate,
+                                                                     stringsAsFactors = FALSE))
+    }
+    
+    performance_summary<-performance_detail %>% 
+      group_by(method) %>% 
+      summarise(
+        false.disc.rate_mean = mean(false_discovery_rate),
+        false.disc.rate_sd = sd(false_discovery_rate),
+        sensitivity_mean = mean(sensitivity),
+        sensitivity_sd = sd(sensitivity)
+      )
+    
+  }
+  
+  
+  # Return both the detailed and summarized results
+  return(list(performance_detail = performance_detail, performance_summary = performance_summary))
+}
+
+
+# Call the calculateMetrics function to identify the true exposures at the true time point (bytime=1)
+results_500  <- calculateMetrics(data=RES1.all.exp3,bytime=1)
+# Access the performances of each method by simulated dataset 
+performance_detail_500 <- results_500$performance_detail
+# Access the overall performances of each method (mean and sd of all simulated datasets)
+performance_summary_500 <- results_500$performance_summary
+
+# Call the calculateMetrics function to identify the true exposures independently of the true time point (bytime=0)
+results_100  <- calculateMetrics(data=RES1.all.exp3,bytime=0)
+# Access the performances of each method by simulated dataset 
+performance_detail_100 <- results_100$performance_detail
+# Access the overall performances of each method (mean and sd of all simulated datasets)
+performance_summary_100 <- results_100$performance_summary
 
 
 
