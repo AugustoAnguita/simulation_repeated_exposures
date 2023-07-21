@@ -5,7 +5,7 @@
 ##                                                              **Number of true exposures associated with the outcome is 3**
 ##
 ##
-## Last update: 20-07-2023
+## Last update: 21-07-2023
 ## Authors: Charline Warembourg <charline.warembourg@inserm.fr> Augusto Anguita <augusto.anguita@isglobal.org>  Xavier Basagaña <xavier.basagana@isglobal.org> 
 #######################################################################################################################################################################################
 
@@ -231,11 +231,12 @@ save(RES1.sNPLS.i.exp3,file="./results/one_step/dataY1andX/exp3/RES1.sNPLS.i.exp
 #####  ****************  Merge all results ****************
 
 
+
 RES1.i.all.exp3<-vector("list",nsim)
 for(i in 1:nsim) {
-  RES1.i.all.exp3[[i]]<-Reduce(function(x, y) merge(x, y, all=TRUE), 
-                               list(RES1.Ewas.i.exp3[[i]], RES1.Enet.i.exp3[[i]], RES1.sPLS.i.exp3[[i]],
-                                    RES1.sNPLS.i.exp3[[i]],RES1.DSA.i.exp3[[i]],RES1.DLNM.i.all.exp3[[i]],RES1.sNPLS.i.exp3[[i]]))
+  RES1.i.all.exp3[[i]]<-Reduce(function(x, y) merge(x, y,by="var", all=TRUE), 
+                                list(RES1.Ewas.i.exp3[[i]], RES1.Enet.i.exp3[[i]][,c("var","ENET_MIN.TP","ENET_OPT.TP")], RES1.sPLS.i.exp3[[i]][,c("var","SPLS_MIN.TP")],
+                                     RES1.DSA.i.exp3[[i]][,c("var","DSA.TP")],RES1.DLNMselect.i.exp3.v2[[i]][,c("var","DLNMselect.by")],RES1.sNPLS.i.exp3[[i]][,c("var","sNPLS.TP")]))
 }
 save(RES1.i.all.exp3,file="RES1.i.all.exp3.RData")
 
@@ -246,15 +247,12 @@ for (i in 1:nsim){
 }
 
 RES1.all.exp3<-RES1.all.exp3[-1,c("var","numsim","true.pred","EWAS.TP.none","EWAS_LM.TP.none",
-                                  "EWAS.TP.bon","EWAS_LM.TP.bon","EWAS.TP.bh","EWAS_LM.TP.bh",  
-                                  "EWAS.TP.by","EWAS_LM.TP.by","ENET_MIN.TP","ENET_OPT.TP",
-                                  "SPLS_MIN.TP","sNPLS.TP","DSA.TP",
-                                  "DLNMpen.none","DLNMpen.bonf","DLNMpen.bh","DLNMpen.by",
-                                  "DLNMselect.none","DLNMselect.bonf","DLNMselect.bh","DLNMselect.by",  
-                                  "DLNMselectback.none","DLNMselectback.bonf","DLNMselectback.bh","DLNMselectback.by",
-                                  "DLNMselectforward.none","DLNMselectforward.bonf","DLNMselectforward.bh","DLNMselectforward.by",
-				  "sNPLS.TP")]
+                                    "EWAS.TP.bon","EWAS_LM.TP.bon","EWAS.TP.bh","EWAS_LM.TP.bh",  
+                                    "EWAS.TP.by","EWAS_LM.TP.by","ENET_MIN.TP","ENET_OPT.TP",
+                                    "SPLS_MIN.TP","DSA.TP","DLNMselect.by","sNPLS.TP")]
 save(RES1.all.exp3,file="RES1.all.exp3.RData")
+
+
 
 
 
@@ -727,7 +725,7 @@ RES1av.all.exp3$DSA.TP[is.na(RES1av.all.exp3$DSA.TP)]<-"0"
 RES1av.all.exp3$true.pred[is.na(RES1av.all.exp3$true.pred)]<-"0"
 
 
-save(RES1av.all.exp3,file="RES1av.all.exp3.RData")
+save(RES1av.all.exp3,file="./results/two_step/dataY1andX/exp3/RES1av.all.exp3.RData")
 
 
 

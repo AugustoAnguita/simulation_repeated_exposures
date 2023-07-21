@@ -5,7 +5,7 @@
 ##                                                              **Number of true exposures associated with the outcome is 5**
 ##
 ##
-## Last update: 09-05-2023
+## Last update: 21-07-2023
 ## Authors: Charline Warembourg <charline.warembourg@inserm.fr> Augusto Anguita <augusto.anguita@isglobal.org>  Xavier Basagaña <xavier.basagana@isglobal.org> 
 #######################################################################################################################################################################################
 
@@ -229,11 +229,12 @@ save(RES1.sNPLS.i.exp5,file="./results/one_step/dataY1andX/exp5/RES1.sNPLS.i.exp
 #####  ****************  Merge all results ****************
 
 
+
 RES1.i.all.exp5<-vector("list",nsim)
 for(i in 1:nsim) {
-  RES1.i.all.exp5[[i]]<-Reduce(function(x, y) merge(x, y, all=TRUE), 
-                               list(RES1.Ewas.i.exp5[[i]], RES1.Enet.i.exp5[[i]], RES1.sPLS.i.exp5[[i]],
-                                    RES1.sNPLS.i.exp5[[i]],RES1.DSA.i.exp5[[i]],RES1.DLNM.i.all.exp5[[i]],RES1.sNPLS.i.exp5[[i]]))
+  RES1.i.all.exp5[[i]]<-Reduce(function(x, y) merge(x, y,by="var", all=TRUE), 
+                                list(RES1.Ewas.i.exp5[[i]], RES1.Enet.i.exp5[[i]][,c("var","ENET_MIN.TP","ENET_OPT.TP")], RES1.sPLS.i.exp5[[i]][,c("var","SPLS_MIN.TP")],
+                                     RES1.DSA.i.exp5[[i]][,c("var","DSA.TP")],RES1.DLNMselect.i.exp5.v2[[i]][,c("var","DLNMselect.by")],RES1.sNPLS.i.exp5[[i]][,c("var","sNPLS.TP")]))
 }
 save(RES1.i.all.exp5,file="RES1.i.all.exp5.RData")
 
@@ -244,15 +245,43 @@ for (i in 1:nsim){
 }
 
 RES1.all.exp5<-RES1.all.exp5[-1,c("var","numsim","true.pred","EWAS.TP.none","EWAS_LM.TP.none",
-                                  "EWAS.TP.bon","EWAS_LM.TP.bon","EWAS.TP.bh","EWAS_LM.TP.bh",  
-                                  "EWAS.TP.by","EWAS_LM.TP.by","ENET_MIN.TP","ENET_OPT.TP",
-                                  "SPLS_MIN.TP","sNPLS.TP","DSA.TP",
-                                  "DLNMpen.none","DLNMpen.bonf","DLNMpen.bh","DLNMpen.by",
-                                  "DLNMselect.none","DLNMselect.bonf","DLNMselect.bh","DLNMselect.by",  
-                                  "DLNMselectback.none","DLNMselectback.bonf","DLNMselectback.bh","DLNMselectback.by",
-                                  "DLNMselectforward.none","DLNMselectforward.bonf","DLNMselectforward.bh","DLNMselectforward.by",
-				  "sNPLS.TP")]
+                                    "EWAS.TP.bon","EWAS_LM.TP.bon","EWAS.TP.bh","EWAS_LM.TP.bh",  
+                                    "EWAS.TP.by","EWAS_LM.TP.by","ENET_MIN.TP","ENET_OPT.TP",
+                                    "SPLS_MIN.TP","DSA.TP","DLNMselect.by","sNPLS.TP")]
 save(RES1.all.exp5,file="RES1.all.exp5.RData")
+
+
+
+
+
+#####  ****************  Calculate the performances (sensitivity and FDR) ****************
+
+
+# Call the calculateMetrics function to identify the true exposures at the true time point (bytime=1)
+results_500  <- calculateMetrics(data=RES1.all.exp5,bytime=1)
+
+# Access the performances of each method by simulated dataset 
+performance_detail_data1_exp5_500 <- results_500$performance_detail
+
+# Access the overall performances of each method (mean and sd of all simulated datasets)
+performance_summary_data1_exp5_500 <- results_500$performance_summary
+
+
+
+# Call the calculateMetrics function to identify the true exposures independently of the true time point (bytime=0)
+results_100  <- calculateMetrics(data=RES1.all.exp5,bytime=0)
+
+# Access the performances of each method by simulated dataset 
+performance_detail_data1_exp5_100 <- results_100$performance_detail
+
+# Access the overall performances of each method (mean and sd of all simulated datasets)
+performance_summary_data1_exp5_100 <- results_100$performance_summary
+
+
+save(performance_detail_data1_exp5_500,file="./results/one_step/dataY1andX/exp5/performance_detail_data1_exp5_500.Rdata")
+save(performance_summary_data1_exp5_500,file="./results/one_step/dataY1andX/exp5/performance_summary_data1_exp5_500.Rdata")
+save(performance_detail_data1_exp5_100,file="./results/one_step/dataY1andX/exp5/performance_detail_data1_exp5_100.Rdata")
+save(performance_summary_data1_exp5_100,file="./results/one_step/dataY1andX/exp5/performance_summary_data1_exp5_100.Rdata")
 
 
 
@@ -656,6 +685,91 @@ for(i in 1:nsim) {
   }
 }
 save(RES1av.DSA.i.redDSA.exp5,file="./results/two_step/dataY1andX/exp5/RES1av.DSA.i.redDSA.exp5.RData")
+
+
+
+
+
+
+
+
+#####  ****************  Merge all results ****************
+
+
+RES1av.i.all.exp5<-vector("list",nsim)
+for(i in 1:nsim) {
+  RES1av.i.all.exp5[[i]]<-Reduce(function(x, y) merge(x, y,all=TRUE,by="var"), 
+                      list(RES1.Ewas.i.exp5[[i]][,c("var","val","Est","pVal","true.pred","numsim")],RES1av.Ewas.i.redExWAS.exp5[[i]][,c("var","EWAS.TP.none")], RES1av.EwasLM.i.redExWASLM.exp5[[i]][,c("var","EWAS_LM.TP.none")], RES1av.EwasBonf.i.redExWASBonf.exp5[[i]][,c("var","EWAS.TP.bon")],
+                           RES1av.EwasBonfLM.i.redExWASBonfLM.exp5[[i]][,c("var","EWAS_LM.TP.bon")],RES1av.EwasBH.i.redExWASBH.exp5[[i]][,c("var","EWAS.TP.bh")],RES1av.EwasBHLM.i.redExWASBHLM.exp5[[i]][,c("var","EWAS_LM.TP.bh")],
+                           RES1av.EwasBY.i.redExWASBY.exp5[[i]][,c("var","EWAS.TP.by")],RES1av.EwasBYLM.i.redExWASBYLM.exp5[[i]][,c("var","EWAS_LM.TP.by")],RES1av.Enet.i.redEnetMin.exp5[[i]][,c("var","ENET_MIN.TP")],
+                           RES1av.Enet.i.redEnetOpt.exp5[[i]][,c("var","ENET_OPT.TP")],RES1av.sPLS.i.redsPLS.exp5[[i]][,c("var","SPLS_MIN.TP")],RES1av.DSA.i.redDSA.exp5[[i]][,c("var","DSA.TP")]))
+}
+
+
+RES1av.all.exp5<-matrix(ncol=dim(RES1av.i.all.exp5[[1]])[2])
+colnames(RES1av.all.exp5)<-colnames(RES1av.i.all.exp5[[1]])
+for (i in 1:nsim){
+  RES1av.all.exp5<-rbind(RES1av.all.exp5,RES1av.i.all.exp5[[i]])
+}
+
+
+RES1av.all.exp5<-RES1av.all.exp5[!is.na(RES1av.all.exp5$var),]
+
+RES1av.all.exp5$EWAS.TP.none[is.na(RES1av.all.exp5$EWAS.TP.none)]<-"0"
+RES1av.all.exp5$EWAS_LM.TP.none[is.na(RES1av.all.exp5$EWAS_LM.TP.none)]<-"0"
+RES1av.all.exp5$EWAS.TP.bon[is.na(RES1av.all.exp5$EWAS.TP.bon)]<-"0"
+RES1av.all.exp5$EWAS_LM.TP.bon[is.na(RES1av.all.exp5$EWAS_LM.TP.bon)]<-"0"
+RES1av.all.exp5$EWAS.TP.bh[is.na(RES1av.all.exp5$EWAS.TP.bh)]<-"0"
+RES1av.all.exp5$EWAS_LM.TP.bh[is.na(RES1av.all.exp5$EWAS_LM.TP.bh)]<-"0"
+RES1av.all.exp5$EWAS.TP.by[is.na(RES1av.all.exp5$EWAS.TP.by)]<-"0"
+RES1av.all.exp5$EWAS_LM.TP.by[is.na(RES1av.all.exp5$EWAS_LM.TP.by)]<-"0"
+RES1av.all.exp5$ENET_MIN.TP[is.na(RES1av.all.exp5$ENET_MIN.TP)]<-"0"
+RES1av.all.exp5$ENET_OPT.TP[is.na(RES1av.all.exp5$ENET_OPT.TP)]<-"0"
+RES1av.all.exp5$SPLS_MIN.TP[is.na(RES1av.all.exp5$SPLS_MIN.TP)]<-"0"
+RES1av.all.exp5$DSA.TP[is.na(RES1av.all.exp5$DSA.TP)]<-"0"
+RES1av.all.exp5$true.pred[is.na(RES1av.all.exp5$true.pred)]<-"0"
+
+
+save(RES1av.all.exp5,file="./results/two_step/dataY1andX/exp5/RES1av.all.exp5.RData")
+
+
+
+
+#####  ****************  Calculate the performances (sensitivity and FDR) ****************
+
+
+# Call the calculateMetrics function to identify the true exposures at the true time point (bytime=1)
+results_500  <- calculateMetrics(data=RES1av.all.exp5,bytime=1)
+
+# Access the performances of each method by simulated dataset 
+performance_detail_data1av_exp5_500 <- results_500$performance_detail
+
+# Access the overall performances of each method (mean and sd of all simulated datasets)
+performance_summary_data1av_exp5_500 <- results_500$performance_summary
+
+
+
+# Call the calculateMetrics function to identify the true exposures independently of the true time point (bytime=0)
+results_100  <- calculateMetrics(data=RES1av.all.exp5,bytime=0)
+
+# Access the performances of each method by simulated dataset 
+performance_detail_data1av_exp5_100 <- results_100$performance_detail
+
+# Access the overall performances of each method (mean and sd of all simulated datasets)
+performance_summary_data1av_exp5_100 <- results_100$performance_summary
+
+save(performance_detail_data1av_exp5_500,file="./results/two_step/dataY1andX/exp5/performance_detail_data1av_exp5_500.Rdata")
+save(performance_summary_data1av_exp5_500,file="./results/two_step/dataY1andX/exp5/performance_summary_data1av_exp5_500.Rdata")
+save(performance_detail_data1av_exp5_100,file="./results/two_step/dataY1andX/exp5/performance_detail_data1av_exp5_100.Rdata")
+save(performance_summary_data1av_exp5_100,file="./results/two_step/dataY1andX/exp5/performance_summary_data1av_exp5_100.Rdata")
+
+
+
+
+
+
+
+
 
 
 
