@@ -5,7 +5,7 @@
 ##                                                              **Number of true exposures associated with the outcome is 3**
 ##
 ##
-## Last update: 09-05-2023
+## Last update: 21-07-2023
 ## Authors: Charline Warembourg <charline.warembourg@inserm.fr> Augusto Anguita <augusto.anguita@isglobal.org>  Xavier Basagaña <xavier.basagana@isglobal.org> 
 #######################################################################################################################################################################################
 
@@ -225,15 +225,15 @@ save(RES2.sNPLS.i.exp3,file="./results/one_step/dataY2andX/exp3/RES2.sNPLS.i.exp
 
 
 
-
 #####  ****************  Merge all results ****************
+
 
 
 RES2.i.all.exp3<-vector("list",nsim)
 for(i in 1:nsim) {
-  RES2.i.all.exp3[[i]]<-Reduce(function(x, y) merge(x, y, all=TRUE), 
-                               list(RES2.Ewas.i.exp3[[i]], RES2.Enet.i.exp3[[i]], RES2.sPLS.i.exp3[[i]],
-                                    RES2.sNPLS.i.exp3[[i]],RES2.DSA.i.exp3[[i]],RES2.DLNM.i.all.exp3[[i]],RES2.sNPLS.i.exp3[[i]]))
+  RES2.i.all.exp3[[i]]<-Reduce(function(x, y) merge(x, y,by="var", all=TRUE), 
+                               list(RES2.Ewas.i.exp3[[i]], RES2.Enet.i.exp3[[i]][,c("var","ENET_MIN.TP","ENET_OPT.TP")], RES2.sPLS.i.exp3[[i]][,c("var","SPLS_MIN.TP")],
+                                    RES2.DSA.i.exp3[[i]][,c("var","DSA.TP")],RES2.DLNMselect.i.exp3.v2[[i]][,c("var","DLNMselect.by")],RES2.sNPLS.i.exp3[[i]][,c("var","sNPLS.TP")]))
 }
 save(RES2.i.all.exp3,file="RES2.i.all.exp3.RData")
 
@@ -246,14 +246,42 @@ for (i in 1:nsim){
 RES2.all.exp3<-RES2.all.exp3[-1,c("var","numsim","true.pred","EWAS.TP.none","EWAS_LM.TP.none",
                                   "EWAS.TP.bon","EWAS_LM.TP.bon","EWAS.TP.bh","EWAS_LM.TP.bh",  
                                   "EWAS.TP.by","EWAS_LM.TP.by","ENET_MIN.TP","ENET_OPT.TP",
-                                  "SPLS_MIN.TP","sNPLS.TP","DSA.TP",
-                                  "DLNMpen.none","DLNMpen.bonf","DLNMpen.bh","DLNMpen.by",
-                                  "DLNMselect.none","DLNMselect.bonf","DLNMselect.bh","DLNMselect.by",  
-                                  "DLNMselectback.none","DLNMselectback.bonf","DLNMselectback.bh","DLNMselectback.by",
-                                  "DLNMselectforward.none","DLNMselectforward.bonf","DLNMselectforward.bh","DLNMselectforward.by",
-				  "sNPLS.TP")]
+                                  "SPLS_MIN.TP","DSA.TP","DLNMselect.by","sNPLS.TP")]
 save(RES2.all.exp3,file="RES2.all.exp3.RData")
 
+
+
+
+
+
+#####  ****************  Calculate the performances (sensitivity and FDR) ****************
+
+
+# Call the calculateMetrics function to identify the true exposures at the true time point (bytime=1)
+results_500  <- calculateMetrics(data=RES2.all.exp3,bytime=1)
+
+# Access the performances of each method by simulated dataset 
+performance_detail_data2_exp3_500 <- results_500$performance_detail
+
+# Access the overall performances of each method (mean and sd of all simulated datasets)
+performance_summary_data2_exp3_500 <- results_500$performance_summary
+
+
+
+# Call the calculateMetrics function to identify the true exposures independently of the true time point (bytime=0)
+results_100  <- calculateMetrics(data=RES2.all.exp3,bytime=0)
+
+# Access the performances of each method by simulated dataset 
+performance_detail_data2_exp3_100 <- results_100$performance_detail
+
+# Access the overall performances of each method (mean and sd of all simulated datasets)
+performance_summary_data2_exp3_100 <- results_100$performance_summary
+
+
+save(performance_detail_data2_exp3_500,file="./results/one_step/dataY2andX/exp3/performance_detail_data2_exp3_500.Rdata")
+save(performance_summary_data2_exp3_500,file="./results/one_step/dataY2andX/exp3/performance_summary_data2_exp3_500.Rdata")
+save(performance_detail_data2_exp3_100,file="./results/one_step/dataY2andX/exp3/performance_detail_data2_exp3_100.Rdata")
+save(performance_summary_data2_exp3_100,file="./results/one_step/dataY2andX/exp3/performance_summary_data2_exp3_100.Rdata")
 
 
 
@@ -659,24 +687,77 @@ save(RES2av.DSA.i.redDSA.exp3,file="./results/two_step/dataY2andX/exp3/RES2av.DS
 
 
 
+#####  ****************  Merge all results ****************
 
 
-# /!\ Augusto's code? To kkep or not ??
+RES2av.i.all.exp3<-vector("list",nsim)
+for(i in 1:nsim) {
+  RES2av.i.all.exp3[[i]]<-Reduce(function(x, y) merge(x, y,all=TRUE,by="var"), 
+                                 list(RES2.Ewas.i.exp3[[i]][,c("var","val","Est","pVal","true.pred","numsim")],RES2av.Ewas.i.redExWAS.exp3[[i]][,c("var","EWAS.TP.none")], RES2av.EwasLM.i.redExWASLM.exp3[[i]][,c("var","EWAS_LM.TP.none")], RES2av.EwasBonf.i.redExWASBonf.exp3[[i]][,c("var","EWAS.TP.bon")],
+                                      RES2av.EwasBonfLM.i.redExWASBonfLM.exp3[[i]][,c("var","EWAS_LM.TP.bon")],RES2av.EwasBH.i.redExWASBH.exp3[[i]][,c("var","EWAS.TP.bh")],RES2av.EwasBHLM.i.redExWASBHLM.exp3[[i]][,c("var","EWAS_LM.TP.bh")],
+                                      RES2av.EwasBY.i.redExWASBY.exp3[[i]][,c("var","EWAS.TP.by")],RES2av.EwasBYLM.i.redExWASBYLM.exp3[[i]][,c("var","EWAS_LM.TP.by")],RES2av.Enet.i.redEnetMin.exp3[[i]][,c("var","ENET_MIN.TP")],
+                                      RES2av.Enet.i.redEnetOpt.exp3[[i]][,c("var","ENET_OPT.TP")],RES2av.sPLS.i.redsPLS.exp3[[i]][,c("var","SPLS_MIN.TP")],RES2av.DSA.i.redDSA.exp3[[i]][,c("var","DSA.TP")]))
+}
 
 
-#### MODELS STARTED WITH VARIABLES SELECTED IN ExWAS Averaged UNCORRECTED APPROACH:
+RES2av.all.exp3<-matrix(ncol=dim(RES2av.i.all.exp3[[1]])[2])
+colnames(RES2av.all.exp3)<-colnames(RES2av.i.all.exp3[[1]])
+for (i in 1:nsim){
+  RES2av.all.exp3<-rbind(RES2av.all.exp3,RES2av.i.all.exp3[[i]])
+}
 
-#### Filtering input variables to those selected by AVG ExWAS
 
-# Selected_Xs <- vector("list", nsim)
+RES2av.all.exp3<-RES2av.all.exp3[!is.na(RES2av.all.exp3$var),]
 
-# for (i in 1:nsim) {
-  
-# 	init_varlist <- gsub("_mean","_",RES2av.Ewas.i.exp3.100[[i]]$var[which(RES2av.Ewas.i.exp3.100[[i]]$EWAS.TP.none==1)])
-	
-#	Selected_Xs[[i]] <- resu.sim.dataX.i[[i]]$X[,unlist(lapply(as.character(init_varlist),function(x){grep(x, gsub("\\..*","_",colnames(resu.sim.dataX.i[[i]]$X)) )}))]
+RES2av.all.exp3$EWAS.TP.none[is.na(RES2av.all.exp3$EWAS.TP.none)]<-"0"
+RES2av.all.exp3$EWAS_LM.TP.none[is.na(RES2av.all.exp3$EWAS_LM.TP.none)]<-"0"
+RES2av.all.exp3$EWAS.TP.bon[is.na(RES2av.all.exp3$EWAS.TP.bon)]<-"0"
+RES2av.all.exp3$EWAS_LM.TP.bon[is.na(RES2av.all.exp3$EWAS_LM.TP.bon)]<-"0"
+RES2av.all.exp3$EWAS.TP.bh[is.na(RES2av.all.exp3$EWAS.TP.bh)]<-"0"
+RES2av.all.exp3$EWAS_LM.TP.bh[is.na(RES2av.all.exp3$EWAS_LM.TP.bh)]<-"0"
+RES2av.all.exp3$EWAS.TP.by[is.na(RES2av.all.exp3$EWAS.TP.by)]<-"0"
+RES2av.all.exp3$EWAS_LM.TP.by[is.na(RES2av.all.exp3$EWAS_LM.TP.by)]<-"0"
+RES2av.all.exp3$ENET_MIN.TP[is.na(RES2av.all.exp3$ENET_MIN.TP)]<-"0"
+RES2av.all.exp3$ENET_OPT.TP[is.na(RES2av.all.exp3$ENET_OPT.TP)]<-"0"
+RES2av.all.exp3$SPLS_MIN.TP[is.na(RES2av.all.exp3$SPLS_MIN.TP)]<-"0"
+RES2av.all.exp3$DSA.TP[is.na(RES2av.all.exp3$DSA.TP)]<-"0"
+RES2av.all.exp3$true.pred[is.na(RES2av.all.exp3$true.pred)]<-"0"
 
-#	}
+
+save(RES2av.all.exp3,file="./results/two_step/dataY2andX/exp3/RES2av.all.exp3.RData")
+
+
+
+
+#####  ****************  Calculate the performances (sensitivity and FDR) ****************
+
+
+# Call the calculateMetrics function to identify the true exposures at the true time point (bytime=1)
+results_500  <- calculateMetrics(data=RES2av.all.exp3,bytime=1)
+
+# Access the performances of each method by simulated dataset 
+performance_detail_data2av_exp3_500 <- results_500$performance_detail
+
+# Access the overall performances of each method (mean and sd of all simulated datasets)
+performance_summary_data2av_exp3_500 <- results_500$performance_summary
+
+
+
+# Call the calculateMetrics function to identify the true exposures independently of the true time point (bytime=0)
+results_100  <- calculateMetrics(data=RES2av.all.exp3,bytime=0)
+
+# Access the performances of each method by simulated dataset 
+performance_detail_data2av_exp3_100 <- results_100$performance_detail
+
+# Access the overall performances of each method (mean and sd of all simulated datasets)
+performance_summary_data2av_exp3_100 <- results_100$performance_summary
+
+save(performance_detail_data2av_exp3_500,file="./results/two_step/dataY2andX/exp3/performance_detail_data2av_exp3_500.Rdata")
+save(performance_summary_data2av_exp3_500,file="./results/two_step/dataY2andX/exp3/performance_summary_data2av_exp3_500.Rdata")
+save(performance_detail_data2av_exp3_100,file="./results/two_step/dataY2andX/exp3/performance_detail_data2av_exp3_100.Rdata")
+save(performance_summary_data2av_exp3_100,file="./results/two_step/dataY2andX/exp3/performance_summary_data2av_exp3_100.Rdata")
+
+
 
 
 
