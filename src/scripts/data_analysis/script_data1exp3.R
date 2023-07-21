@@ -5,7 +5,7 @@
 ##                                                              **Number of true exposures associated with the outcome is 3**
 ##
 ##
-## Last update: 09-05-2023
+## Last update: 20-07-2023
 ## Authors: Charline Warembourg <charline.warembourg@inserm.fr> Augusto Anguita <augusto.anguita@isglobal.org>  Xavier Basagaña <xavier.basagana@isglobal.org> 
 #######################################################################################################################################################################################
 
@@ -185,7 +185,7 @@ save(RES1.DLNMselect.i.exp3,file="./results/one_step/dataY1andX/exp3/RES1.DLNMse
 
 
 # The loop below allows to check the significance of the overall p-value (crossbasis) and the confidence interval of each lag : if overall p-value is significant 
-# (with or without correction for multiple testing) and the CI doesn't include 0, then the exposure is considered as "selected" otherwise not.
+# (with or without correction for multiple RES1av.all.exp3ing) and the CI doesn't include 0, then the exposure is considered as "selected" otherwise not.
 
 for(i in 1:nsim) { 
 	  RES1.DLNMselect.i.exp3[[i]]$num_time<-rep(1:5,100)
@@ -266,10 +266,10 @@ save(RES1.all.exp3,file="RES1.all.exp3.RData")
 results_500  <- calculateMetrics(data=RES1.all.exp3,bytime=1)
 
 # Access the performances of each method by simulated dataset 
-performance_detail_500 <- results_500$performance_detail
+performance_detail_data1_exp3_500 <- results_500$performance_detail
 
 # Access the overall performances of each method (mean and sd of all simulated datasets)
-performance_summary_500 <- results_500$performance_summary
+performance_summary_data1_exp3_500 <- results_500$performance_summary
 
 
 
@@ -277,13 +277,16 @@ performance_summary_500 <- results_500$performance_summary
 results_100  <- calculateMetrics(data=RES1.all.exp3,bytime=0)
 
 # Access the performances of each method by simulated dataset 
-performance_detail_100 <- results_100$performance_detail
+performance_detail_data1_exp3_100 <- results_100$performance_detail
 
 # Access the overall performances of each method (mean and sd of all simulated datasets)
-performance_summary_100 <- results_100$performance_summary
+performance_summary_data1_exp3_100 <- results_100$performance_summary
 
 
-
+save(performance_detail_data1_exp3_500,file="./results/one_step/dataY1andX/exp3/performance_detail_data1_exp3_500.Rdata")
+save(performance_summary_data1_exp3_500,file="./results/one_step/dataY1andX/exp3/performance_summary_data1_exp3_500.Rdata")
+save(performance_detail_data1_exp3_100,file="./results/one_step/dataY1andX/exp3/performance_detail_data1_exp3_100.Rdata")
+save(performance_summary_data1_exp3_100,file="./results/one_step/dataY1andX/exp3/performance_summary_data1_exp3_100.Rdata")
 
 
 
@@ -682,6 +685,83 @@ for(i in 1:nsim) {
   }
 }
 save(RES1av.DSA.i.redDSA.exp3,file="./results/two_step/dataY1andX/exp3/RES1av.DSA.i.redDSA.exp3.RData")
+
+
+
+
+
+#####  ****************  Merge all results ****************
+
+
+RES1av.i.all.exp3<-vector("list",nsim)
+for(i in 1:nsim) {
+  RES1av.i.all.exp3[[i]]<-Reduce(function(x, y) merge(x, y,all=TRUE,by="var"), 
+                      list(RES1.Ewas.i.exp3[[i]][,c("var","val","Est","pVal","true.pred","numsim")],RES1av.Ewas.i.redExWAS.exp3[[i]][,c("var","EWAS.TP.none")], RES1av.EwasLM.i.redExWASLM.exp3[[i]][,c("var","EWAS_LM.TP.none")], RES1av.EwasBonf.i.redExWASBonf.exp3[[i]][,c("var","EWAS.TP.bon")],
+                           RES1av.EwasBonfLM.i.redExWASBonfLM.exp3[[i]][,c("var","EWAS_LM.TP.bon")],RES1av.EwasBH.i.redExWASBH.exp3[[i]][,c("var","EWAS.TP.bh")],RES1av.EwasBHLM.i.redExWASBHLM.exp3[[i]][,c("var","EWAS_LM.TP.bh")],
+                           RES1av.EwasBY.i.redExWASBY.exp3[[i]][,c("var","EWAS.TP.by")],RES1av.EwasBYLM.i.redExWASBYLM.exp3[[i]][,c("var","EWAS_LM.TP.by")],RES1av.Enet.i.redEnetMin.exp3[[i]][,c("var","ENET_MIN.TP")],
+                           RES1av.Enet.i.redEnetOpt.exp3[[i]][,c("var","ENET_OPT.TP")],RES1av.sPLS.i.redsPLS.exp3[[i]][,c("var","SPLS_MIN.TP")],RES1av.DSA.i.redDSA.exp3[[i]][,c("var","DSA.TP")]))
+}
+
+
+RES1av.all.exp3<-matrix(ncol=dim(RES1av.i.all.exp3[[1]])[2])
+colnames(RES1av.all.exp3)<-colnames(RES1av.i.all.exp3[[1]])
+for (i in 1:nsim){
+  RES1av.all.exp3<-rbind(RES1av.all.exp3,RES1av.i.all.exp3[[i]])
+}
+
+
+RES1av.all.exp3<-RES1av.all.exp3[!is.na(RES1av.all.exp3$var),]
+
+RES1av.all.exp3$EWAS.TP.none[is.na(RES1av.all.exp3$EWAS.TP.none)]<-"0"
+RES1av.all.exp3$EWAS_LM.TP.none[is.na(RES1av.all.exp3$EWAS_LM.TP.none)]<-"0"
+RES1av.all.exp3$EWAS.TP.bon[is.na(RES1av.all.exp3$EWAS.TP.bon)]<-"0"
+RES1av.all.exp3$EWAS_LM.TP.bon[is.na(RES1av.all.exp3$EWAS_LM.TP.bon)]<-"0"
+RES1av.all.exp3$EWAS.TP.bh[is.na(RES1av.all.exp3$EWAS.TP.bh)]<-"0"
+RES1av.all.exp3$EWAS_LM.TP.bh[is.na(RES1av.all.exp3$EWAS_LM.TP.bh)]<-"0"
+RES1av.all.exp3$EWAS.TP.by[is.na(RES1av.all.exp3$EWAS.TP.by)]<-"0"
+RES1av.all.exp3$EWAS_LM.TP.by[is.na(RES1av.all.exp3$EWAS_LM.TP.by)]<-"0"
+RES1av.all.exp3$ENET_MIN.TP[is.na(RES1av.all.exp3$ENET_MIN.TP)]<-"0"
+RES1av.all.exp3$ENET_OPT.TP[is.na(RES1av.all.exp3$ENET_OPT.TP)]<-"0"
+RES1av.all.exp3$SPLS_MIN.TP[is.na(RES1av.all.exp3$SPLS_MIN.TP)]<-"0"
+RES1av.all.exp3$DSA.TP[is.na(RES1av.all.exp3$DSA.TP)]<-"0"
+RES1av.all.exp3$true.pred[is.na(RES1av.all.exp3$true.pred)]<-"0"
+
+
+save(RES1av.all.exp3,file="RES1av.all.exp3.RData")
+
+
+
+
+#####  ****************  Calculate the performances (sensitivity and FDR) ****************
+
+
+# Call the calculateMetrics function to identify the true exposures at the true time point (bytime=1)
+results_500  <- calculateMetrics(data=RES1av.all.exp3,bytime=1)
+
+# Access the performances of each method by simulated dataset 
+performance_detail_data1av_exp3_500 <- results_500$performance_detail
+
+# Access the overall performances of each method (mean and sd of all simulated datasets)
+performance_summary_data1av_exp3_500 <- results_500$performance_summary
+
+
+
+# Call the calculateMetrics function to identify the true exposures independently of the true time point (bytime=0)
+results_100  <- calculateMetrics(data=RES1av.all.exp3,bytime=0)
+
+# Access the performances of each method by simulated dataset 
+performance_detail_data1av_exp3_100 <- results_100$performance_detail
+
+# Access the overall performances of each method (mean and sd of all simulated datasets)
+performance_summary_data1av_exp3_100 <- results_100$performance_summary
+
+save(performance_detail_data1av_exp3_500,file="./results/two_step/dataY1andX/exp3/performance_detail_data1av_exp3_500.Rdata")
+save(performance_summary_data1av_exp3_500,file="./results/two_step/dataY1andX/exp3/performance_summary_data1av_exp3_500.Rdata")
+save(performance_detail_data1av_exp3_100,file="./results/two_step/dataY1andX/exp3/performance_detail_data1av_exp3_100.Rdata")
+save(performance_summary_data1av_exp3_100,file="./results/two_step/dataY1andX/exp3/performance_summary_data1av_exp3_100.Rdata")
+
+
+
 
 
 
