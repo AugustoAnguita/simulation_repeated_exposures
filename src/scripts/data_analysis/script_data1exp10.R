@@ -237,7 +237,7 @@ for(i in 1:nsim) {
                                list(RES1.Ewas.i.exp10[[i]], RES1.Enet.i.exp10[[i]][,c("var","ENET_MIN.TP","ENET_OPT.TP")], RES1.sPLS.i.exp10[[i]][,c("var","SPLS_MIN.TP")],
                                     RES1.DSA.i.exp10[[i]][,c("var","DSA.TP")],RES1.DLNMselect.i.exp10.v2[[i]][,c("var","DLNMselect.by")],RES1.sNPLS.i.exp10[[i]][,c("var","sNPLS.TP")]))
 }
-save(RES1.i.all.exp10,file="RES1.i.all.exp10.RData")
+save(RES1.i.all.exp10,file="./results/one_step/dataY1andX/exp10/RES1.i.all.exp10.RData")
 
 RES1.all.exp10<-matrix(ncol=dim(RES1.i.all.exp10[[1]])[2])
 colnames(RES1.all.exp10)<-colnames(RES1.i.all.exp10[[1]])
@@ -249,7 +249,7 @@ RES1.all.exp10<-RES1.all.exp10[-1,c("var","numsim","true.pred","EWAS.TP.none","E
                                   "EWAS.TP.bon","EWAS_LM.TP.bon","EWAS.TP.bh","EWAS_LM.TP.bh",  
                                   "EWAS.TP.by","EWAS_LM.TP.by","ENET_MIN.TP","ENET_OPT.TP",
                                   "SPLS_MIN.TP","DSA.TP","DLNMselect.by","sNPLS.TP")]
-save(RES1.all.exp10,file="RES1.all.exp10.RData")
+save(RES1.all.exp10,file="./results/one_step/dataY1andX/exp10/RES1.all.exp10.RData")
 
 
 
