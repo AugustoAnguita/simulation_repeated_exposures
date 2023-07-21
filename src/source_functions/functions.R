@@ -39,8 +39,13 @@
 ##
 ## applyDLNMselect : Implemmentation of DLNM with penalization and feature selection. Please, see manuscript for mor details.
 ##
+## squareTable : Creation of 2x2 table to compare the expected and observed selection. This function is called within the calculateMetrics() function.
 ##
-## Last update: 09-05-2023
+## data100: Arrange the input dataset to calculate the performance independently of the true timepoint. This function is called within the calculateMetrics() function when bytime=0.
+##
+## calculateMetrics: Calculate the performance of each method, both considering or not the true time point 
+##
+## Last update: 21-07-2023
 ## Authors: Charline Warembourg <charline.warembourg@inserm.fr> Augusto Anguita <augusto.anguita@isglobal.org>  Xavier Basagaña <xavier.basagana@isglobal.org> 
 ################################################################################################################################################################################################################################################
 
@@ -1035,19 +1040,6 @@ calculateMetrics <- function(data,bytime) {	# bytime=1 to calculate the performa
 }
 
 
-# Call the calculateMetrics function to identify the true exposures at the true time point (bytime=1)
-results_500  <- calculateMetrics(data=RES1.all.exp3,bytime=1)
-# Access the performances of each method by simulated dataset 
-performance_detail_500 <- results_500$performance_detail
-# Access the overall performances of each method (mean and sd of all simulated datasets)
-performance_summary_500 <- results_500$performance_summary
-
-# Call the calculateMetrics function to identify the true exposures independently of the true time point (bytime=0)
-results_100  <- calculateMetrics(data=RES1.all.exp3,bytime=0)
-# Access the performances of each method by simulated dataset 
-performance_detail_100 <- results_100$performance_detail
-# Access the overall performances of each method (mean and sd of all simulated datasets)
-performance_summary_100 <- results_100$performance_summary
 
 
 
