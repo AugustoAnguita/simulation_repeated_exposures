@@ -20,7 +20,7 @@ Basagaña Xavier
 > of repeated exposure data. The different tested approaches followed during our simulation analysis are illustrated in the next figure:
 
 
-![](scr/image/overview_methods.png)
+![](https://github.com/AugustoAnguita/simulation_repeated_exposures/blob/main/src/image/overview_methods.png)
 *Figure. Overview of the statistical methods tested to estimate exposome-health associations in the context of repeated exposure.*
 
 
