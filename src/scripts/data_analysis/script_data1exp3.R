@@ -576,7 +576,7 @@ for(i in 1:nsim) {
 save(RES1av.EwasBYLM.i.redExWASBYLM.exp3,file="./results/two_step/dataY1andX/exp3/RES1av.EwasBYLM.i.redExWASBYLM.exp3.RData")
 
 
-#####   ****************  Enet - MIN  ****************
+#####   ****************  Enet - MIN  **************** (NOTE: Model not included in our simulation paper)
 
 RES1av.Enet.i.exp3.v2<-RES1av.Enet.i.exp3.100
 RES1av.Enet.i.exp3.v3<-list("vector",nsim)
