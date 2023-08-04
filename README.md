@@ -32,10 +32,10 @@ Basagaña Xavier
 
 > The software written to produce the results presented in this paper is organized in three main blocks (dataset generation, data analysis and results interpretation).
 
-All source code used to generate the results and figures in the paper are in
+All source code used to generate the data and the results in the paper are in
 the `src` folder.
-The data used in this study is provided in `data` and the sources for the
-manuscript text and figures are in `manuscript`.
+The simulated data used in this study is provided in `data`.
+The selection of variables obtained after the application of each method are provided in `results` (sub-divided by scenario and number of true predictors)
 See the `README.md` files in each directory for a full description.
 
 
