@@ -7,7 +7,7 @@ library(matrixcalc)
 ###### Script to simulate the data under the different scenarios
 
 # load the functions
-source(file="Functions method simulation_charline.R")
+source(file="./src/source_functions/functions.R")
 
 # define number of simulated dataset (X and Y)
 nsim<-100
@@ -16,12 +16,12 @@ nsim<-100
 ###### Simulate X data
 
 # load the correlation matrix to be used to simulate X
-load(file="baseline/Sigma.Rdata") # Real correlation matrix observed in Helix project using postnatal exposure data
+load(file="./data/Xs/Sigma.Rdata") # Real correlation matrix observed in Helix project using postnatal exposure data
 
 # Simulate X data based on the correlation matrix - 100 times 
 resu.sim.dataX.i <- vector("list", nsim)
 for(i in 1:nsim) {
-   resu.sim.dataX.i[[i]] = simX(cormat.ordered=Sigma, N = 1200)
+   resu.sim.dataX.i[[i]] = simX(Sigma=Sigma, N = 1200)
 }
 
 # reordering columns
@@ -42,7 +42,7 @@ for(i in 1:nsim) {
 }
 
 # Save X data
-save(resu.sim.dataX.i,file="baseline/resu.sim.dataX.i.RData")
+save(resu.sim.dataX.i,file="./data/Xs/resu.sim.dataX.i.RData")
 
 
 
@@ -66,7 +66,7 @@ for(i in 1:nsim) {
 }
 
 # Save Y data, under scenario 1, when k=3
-save(resu.sim.data1.exp3,file="dataY1andX/exp3/resu.sim.data1.exp3.RData")
+save(resu.sim.data1.exp3,file="./data/Ys/data1exp3/resu.sim.data1.exp3.RData")
 
 
 ### Simulate Y data, under scenario 1, when k=5 
@@ -79,7 +79,7 @@ for(i in 1:nsim) {
 }
 
 # Save Y data, under scenario 1, when k=5
-save(resu.sim.data1.exp5,file="dataY1andX/exp5/resu.sim.data1.exp5.RData")
+save(resu.sim.data1.exp5,file="./data/Ys/data1exp5/resu.sim.data1.exp5.RData")
 
 
 ### Simulate Y data, under scenario 1, when k=10
@@ -92,7 +92,7 @@ for(i in 1:nsim) {
 }
 
 # Save Y data, under scenario 1, when k=10
-save(resu.sim.data1.exp10,file="dataY1andX/exp10/resu.sim.data1.exp10.RData")
+save(resu.sim.data1.exp10,file="./data/Ys/data1exp10/resu.sim.data1.exp10.RData")
 
 
 ###### Simulate Y data under scenario 2
@@ -116,7 +116,7 @@ for(i in 1:nsim) {
 }
 
 # Save Y data, under scenario 2, when k=3
-save(resu.sim.data2.exp3,file="dataY2andX/exp3/resu.sim.data2.exp3.RData")
+save(resu.sim.data2.exp3,file="./data/Ys/data2exp3/resu.sim.data2.exp3.RData")
 
 
 
@@ -130,7 +130,7 @@ for(i in 1:nsim) {
 }
 
 # Save Y data, under scenario 2, when k=5
-save(resu.sim.data2.exp5,file="dataY2andX/exp5/resu.sim.data2.exp5.RData")
+save(resu.sim.data2.exp5,file="./data/Ys/data2exp3/resu.sim.data2.exp5.RData")
 
 
 ### Simulate Y data, under scenario 2, when k=10
@@ -143,7 +143,7 @@ for(i in 1:nsim) {
 }
 
 # Save Y data, under scenario 2, when k=10
-save(resu.sim.data2.exp10,file="dataY2andX/exp10/resu.sim.data2.exp10.RData")
+save(resu.sim.data2.exp10,file="./data/Ys/data2exp3/resu.sim.data2.exp10.RData")
 
 
 
@@ -175,7 +175,7 @@ for(i in 1:nsim) {
   Xlong.i[[i]]<-reshap.long(X=resu.sim.dataX.i[[i]]$X,nvars=100,r=5)
 }
 
-save(Xlong.i,file="baseline/Xlong.i.RData")
+save(Xlong.i,file="./data/Xs/Xlong.i.RData")
 
 
 ##### Calculate the average exposure level across the time points
@@ -194,7 +194,7 @@ for(i in 1:nsim) {
   Xave.i[[i]]<-average.long(data.X=Xlong.i[[i]])
 }
 
-save(Xave.i,file="baseline/Xave.i.RData")
+save(Xave.i,file="./data/Xs/Xave.i.RData")
 
 
 ##### Renaming the true predictors of Y stored in resu.sim.dataX.expX$true.pred (from .1, .2, .3, .4, .5 to _mean)
@@ -203,7 +203,7 @@ save(Xave.i,file="baseline/Xave.i.RData")
 nexp<-3
 
 # load Y data (simulated from raw X data, not X average)
-load(file="dataY1andX/exp3/resu.sim.data1.exp3.RData")
+load(file="./data/Ys/data1exp3/resu.sim.data1.exp3.RData")
 
 # create a new object with Y data modifying the true.pred list (eg, from X15.1 X15.2 X15.3 X15.4 X15.5 to X15_mean)
 resu.sim.data1av.exp3.100<-resu.sim.data1.exp3
@@ -217,14 +217,14 @@ for (i in 1:100){
   
 }
 
-save(resu.sim.data1av.exp3.100,file="dataY1andX/exp3/twostep/resu.sim.data1av.exp3.100.RData")
+save(resu.sim.data1av.exp3.100,file="./data/Ys/data1exp3/twostep/resu.sim.data1av.exp3.100.RData")
 
 
 ### Under scenario 1, when k=5
 nexp<-5
 
 # load Y data (simulated from raw X data, not X average)
-load(file="dataY1andX/exp5/resu.sim.data1.exp5.RData")
+load(file="./data/Ys/data1exp5/resu.sim.data1.exp5.RData")
 
 # create a new object with Y data modifying the true.pred list (eg, from X15.1 X15.2 X15.3 X15.4 X15.5 to X15_mean)
 resu.sim.data1av.exp5.100<-resu.sim.data1.exp5
@@ -238,14 +238,14 @@ for (i in 1:100){
   
 }
 
-save(resu.sim.data1av.exp5.100,file="dataY1andX/exp5/twostep/resu.sim.data1av.exp5.100.RData")
+save(resu.sim.data1av.exp5.100,file="./data/Ys/data1exp5/twostep/resu.sim.data1av.exp5.100.RData")
 
 
 ### Under scenario 1, when k=10
 nexp<-10
 
 # load Y data (simulated from raw X data, not X average)
-load(file="dataY1andX/exp10/resu.sim.data1.exp10.RData")
+load(file="./data/Ys/data1exp10/resu.sim.data1.exp10.RData")
 
 # create a new object with Y data modifying the true.pred list (eg, from X15.1 X15.2 X15.3 X15.4 X15.5 to X15_mean)
 resu.sim.data1av.exp10.100<-resu.sim.data1.exp10
@@ -259,14 +259,14 @@ for (i in 1:100){
   
 }
 
-save(resu.sim.data1av.exp10.100,file="dataY1andX/exp10/twostep/resu.sim.data1av.exp10.100.RData")
+save(resu.sim.data1av.exp10.100,file="./data/Ys/data1exp10/twostep/resu.sim.data1av.exp10.100.RData")
 
 
 ### Under scenario 2, when k=3
 nexp<-3
 
 # load Y data (simulated from raw X data, not X average)
-load(file="dataY2andX/exp3/resu.sim.data2.exp3.RData")
+load(file="./data/Ys/data2exp3/resu.sim.data2.exp3.RData")
 
 # create a new object with Y data modifying the true.pred list (eg, from X15.1 X15.2 X15.3 X15.4 X15.5 to X15_mean)
 resu.sim.data2av.exp3.100<-resu.sim.data2.exp3
@@ -280,14 +280,14 @@ for (i in 1:100){
   
 }
 
-save(resu.sim.data2av.exp3.100,file="dataY2andX/exp3/twostep/resu.sim.data2av.exp3.100.RData")
+save(resu.sim.data2av.exp3.100,file="./data/Ys/data2exp3/twostep/resu.sim.data2av.exp3.100.RData")
 
 
 ### Under scenario 2, when k=5
 nexp<-5
 
 # load Y data (simulated from raw X data, not X average)
-load(file="dataY2andX/exp5/resu.sim.data2.exp5.RData")
+load(file="./data/Ys/data2exp5/resu.sim.data2.exp5.RData")
 
 # create a new object with Y data modifying the true.pred list (eg, from X15.1 X15.2 X15.3 X15.4 X15.5 to X15_mean)
 resu.sim.data2av.exp5.100<-resu.sim.data2.exp5
@@ -301,14 +301,14 @@ for (i in 1:100){
   
 }
 
-save(resu.sim.data2av.exp5.100,file="dataY2andX/exp5/twostep/resu.sim.data2av.exp5.100.RData")
+save(resu.sim.data2av.exp5.100,file="./data/Ys/data2exp5/twostep/resu.sim.data2av.exp5.100.RData")
 
 
 ### Under scenario 2, when k=10
 nexp<-10
 
 # load Y data (simulated from raw X data, not X average)
-load(file="dataY2andX/exp10/resu.sim.data2.exp10.RData")
+load(file="./data/Ys/data2exp10/resu.sim.data2.exp10.RData")
 
 # create a new object with Y data modifying the true.pred list (eg, from X15.1 X15.2 X15.3 X15.4 X15.5 to X15_mean)
 resu.sim.data2av.exp10.100<-resu.sim.data2.exp10
@@ -322,5 +322,5 @@ for (i in 1:100){
   
 }
 
-save(resu.sim.data2av.exp10.100,file="dataY2andX/exp10/twostep/resu.sim.data2av.exp10.100.RData")
+save(resu.sim.data2av.exp10.100,file="./data/Ys/data2exp10/twostep/resu.sim.data2av.exp10.100.RData")
 

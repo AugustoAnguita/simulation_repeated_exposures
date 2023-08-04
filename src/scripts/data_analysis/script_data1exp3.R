@@ -74,7 +74,7 @@ nexp <- 3
 load(file="./data/Xs/resu.sim.dataX.i.RData")
 
 # load Y data
-load(file="./data/Ys/dataY1andX/exp3/resu.sim.data1.exp3.RData")
+load(file="./data/Ys/data1exp3/resu.sim.data1.exp3.RData")
 
 
 
@@ -302,7 +302,7 @@ save(performance_summary_data1_exp3_100,file="./results/one_step/dataY1andX/exp3
 load(file="./data/Xs/Xave.i.RData")
 
 # load Y data - denominator = 100 "_mean" true predictors
-load(file="./data/Ys/dataY1andX/exp3/resu.sim.data1av.exp3.100.RData")
+load(file="./data/Ys/data1exp3/resu.sim.data1av.exp3.100.RData")
 
 
 ########################################################
@@ -758,30 +758,6 @@ save(performance_summary_data1av_exp3_500,file="./results/two_step/dataY1andX/ex
 save(performance_detail_data1av_exp3_100,file="./results/two_step/dataY1andX/exp3/performance_detail_data1av_exp3_100.Rdata")
 save(performance_summary_data1av_exp3_100,file="./results/two_step/dataY1andX/exp3/performance_summary_data1av_exp3_100.Rdata")
 
-
-
-
-
-
-
-
-
-# /!\ Augusto's code? To kkep or not ??
-
-
-#### MODELS STARTED WITH VARIABLES SELECTED IN ExWAS Averaged UNCORRECTED APPROACH:
-
-#### Filtering input variables to those selected by AVG ExWAS
-
-# Selected_Xs <- vector("list", nsim)
-
-# for (i in 1:nsim) {
-  
-# 	init_varlist <- gsub("_mean","_",RES1av.Ewas.i.exp3.100[[i]]$var[which(RES1av.Ewas.i.exp3.100[[i]]$EWAS.TP.none==1)])
-	
-#	Selected_Xs[[i]] <- resu.sim.dataX.i[[i]]$X[,unlist(lapply(as.character(init_varlist),function(x){grep(x, gsub("\\..*","_",colnames(resu.sim.dataX.i[[i]]$X)) )}))]
-
-#	}
 
 
 

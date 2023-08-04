@@ -764,35 +764,3 @@ save(performance_detail_data1av_exp5_100,file="./results/two_step/dataY1andX/exp
 save(performance_summary_data1av_exp5_100,file="./results/two_step/dataY1andX/exp5/performance_summary_data1av_exp5_100.Rdata")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-# /!\ Augusto's code? To kkep or not ??
-
-
-#### MODELS STARTED WITH VARIABLES SELECTED IN ExWAS Averaged UNCORRECTED APPROACH:
-
-#### Filtering input variables to those selected by AVG ExWAS
-
-# Selected_Xs <- vector("list", nsim)
-
-# for (i in 1:nsim) {
-  
-# 	init_varlist <- gsub("_mean","_",RES1av.Ewas.i.exp5.100[[i]]$var[which(RES1av.Ewas.i.exp5.100[[i]]$EWAS.TP.none==1)])
-	
-#	Selected_Xs[[i]] <- resu.sim.dataX.i[[i]]$X[,unlist(lapply(as.character(init_varlist),function(x){grep(x, gsub("\\..*","_",colnames(resu.sim.dataX.i[[i]]$X)) )}))]
-
-#	}
-
-
-
-

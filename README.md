@@ -44,9 +44,9 @@ See the `README.md` files in each directory for a full description.
 You can download a copy of all the files in this repository by cloning the
 [git](https://git-scm.com/) repository:
 
-    git clone ...
+    git clone https://github.com/AugustoAnguita/simulation_repeated_exposures
 
-or [download a zip archive](https://github.com/.../archive/master.zip).
+or [download a zip archive](https://github.com/AugustoAnguita/simulation_repeated_exposures/archive/refs/heads/main.zip).
 
 
 ## Dependencies
