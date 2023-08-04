@@ -19,8 +19,8 @@ Basagaña Xavier
 > In the current paper, we conduct a simulation analysis to compare the performance of different exposome analysis techniques in the scenario 
 > of repeated exposure data. The different tested approaches followed during our simulation analysis are illustrated in the next figure:
 
-![](scr/image/overview_methods.png)
 
+![](scr/image/overview_methods.png)
 *Figure. Overview of the statistical methods tested to estimate exposome-health associations in the context of repeated exposure.*
 
 
